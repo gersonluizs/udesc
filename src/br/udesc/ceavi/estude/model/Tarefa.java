@@ -15,8 +15,6 @@ import javax.persistence.Id;
 
 public class Tarefa {
     
-    
- 
     private int codigo;
     private String nome;
     private String descricao;
