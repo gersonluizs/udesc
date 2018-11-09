@@ -39,7 +39,7 @@ public class Disciplina {
     @OneToMany (mappedBy = "disciplina")
     private List<Conteudo> conteudos;
     
-    @Transient
+    @Column(name = "constatus")
     private Status status;
 
     public Disciplina(int codigo, String nome, String descricao, String cargaHoraria, List<Conteudo> conteudos, Status status) {
