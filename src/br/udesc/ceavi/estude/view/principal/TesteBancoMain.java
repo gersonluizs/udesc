@@ -1,8 +1,8 @@
 package br.udesc.ceavi.estude.view.principal;
 
 
-import br.udesc.ceavi.progii.control.dao.core.DAO;
-import br.udesc.ceavi.progii.control.dao.core.JPADAO;
+import br.udesc.ceavi.estude.control.dao.core.DAO;
+import br.udesc.ceavi.estude.control.dao.core.JPADAO;
 
 /**
  * Esta classe define o fonte de teste para JPA 
