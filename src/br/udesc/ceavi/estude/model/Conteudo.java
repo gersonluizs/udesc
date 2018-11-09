@@ -34,23 +34,23 @@ public class Conteudo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_conteudo")
+    @Column(name = "concodigo")
     private int codigo;
     
-    @Column(name = "nome")
+    @Column(name = "connome")
     private String nome;
     
-    @Column(name = "descricao")
+    @Column(name = "condescricao")
     private String descricao;
     
-    @Column(name = "prioridade")
+    @Column(name = "conprioridade")
     private Prioridade prioridade;
     
     @ManyToOne
     @JoinColumn(name = "id_disciplina")
     private Disciplina disciplina;
     
-    @Transient
+    @Column(name = "constatus")
     private Status status;
 
     @Transient
