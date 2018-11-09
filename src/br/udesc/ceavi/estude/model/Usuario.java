@@ -4,6 +4,12 @@ import br.udesc.ceavi.estude.control.Criptografia;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Esta classe define os atributos e comportamentos de um usario
@@ -11,15 +17,31 @@ import javax.persistence.Column;
  * @version 1.0
  * @since 19/08/2018
  */
-
+@Entity
+@Table(name = "usuario")
 public class Usuario {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "usucodigo")
     private int codigo;
+    
     @Column
     private String nome;
+    
+    @Column
     private String email;
+    
+    @Column
     private String senha;
+    
+    @Column
     private Agenda agenda;
+    
+    @OneToMany (mappedBy = "usuario")
     private List<Notificacao> notificacoes;
+    
+    @OneToMany (mappedBy = "usuario")
     private List<Privilegio> privilegios;
     
     public Usuario() {
