@@ -121,7 +121,7 @@ public class Agenda {
         tarefa.setDescricao(descricao);
         tarefa.setDataHoraFim(dataHoraFim);
         tarefa.setDataHoraInicio(dataHoraInicio);
-        tarefa.addNotificacao(codigo, descricao, descricao, dataHoraFim, true);
+      //  tarefa.addNotificacao(codigo, descricao, descricao, dataHoraFim, true);
     }
 
     public void removeTarefa() {

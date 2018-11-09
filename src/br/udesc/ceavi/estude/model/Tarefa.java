@@ -1,10 +1,13 @@
 package br.udesc.ceavi.estude.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Esta classe define os atributos e comportamentos das tarefas do usuario
@@ -18,28 +21,40 @@ public class Tarefa {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_tarefa")
+    @Column(name = "tarcodigo")
     private int codigo;
+    
+    @Column(name = "tarnome")
     private String nome;
+    
+    @Column(name = "tardescricao")
     private String descricao;
+    
+    @Column(name = "tardatahorainicio")
     private Date dataHoraInicio;
+    
+    @Column(name = "tardatahorafim")
     private Date dataHoraFim;
-    private Notificacao notificacao;
+    
+    @OneToMany (mappedBy = "tarefa")
+    private List<Notificacao> notificacoes;
     private tipoTarefa tipotarefa;
     private Status status;
     private Conteudo conteudo;
 
-    public Tarefa(int codigo, String nome, String descricao, Date dataHoraInicio, Date dataHoraFim, Notificacao notificacao, tipoTarefa tipotarefa, Status status, Conteudo conteudo) {
+    public Tarefa(int codigo, String nome, String descricao, Date dataHoraInicio, Date dataHoraFim, List<Notificacao> notificacoes, tipoTarefa tipotarefa, Status status, Conteudo conteudo) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.dataHoraInicio = dataHoraInicio;
         this.dataHoraFim = dataHoraFim;
-        this.notificacao = notificacao;
+        this.notificacoes= new ArrayList<>();
         this.tipotarefa = tipotarefa;
         this.status = status;
         this.conteudo = conteudo;
     }
+
+   
 
     public Tarefa() {
         super();
@@ -109,22 +124,19 @@ public class Tarefa {
     public void setConteudo(Conteudo conteudo) {
         this.conteudo = conteudo;
     }
-    
-    
 
-    public void addNotificacao(int codigo, String assunto, String descricao, Date dataHora,
-            boolean visualizado) {
-
+    public List<Notificacao> getNotificacoes() {
+        return notificacoes;
     }
 
-    public void removeNotificacao() {
-        this.notificacao = null;
+    public void setNotificacoes(List<Notificacao> notificacoes) {
+        this.notificacoes = notificacoes;
     }
 
     @Override
     public String toString() {
-        return "Tarefa{" + "codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao + ", dataHoraInicio=" + dataHoraInicio + ", dataHoraFim=" + dataHoraFim + ", notificacao=" + notificacao + ", tipotarefa=" + tipotarefa + ", status=" + status + ", conteudo=" + conteudo + '}';
+        return "Tarefa{" + "codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao + ", dataHoraInicio=" + dataHoraInicio + ", dataHoraFim=" + dataHoraFim + ", notificacoes=" + notificacoes + ", tipotarefa=" + tipotarefa + ", status=" + status + ", conteudo=" + conteudo + '}';
     }
-
- 
+    
+    
 }
