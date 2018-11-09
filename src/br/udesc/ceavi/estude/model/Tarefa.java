@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Esta classe define os atributos e comportamentos das tarefas do usuario
@@ -27,6 +29,9 @@ public class Tarefa {
     private Notificacao notificacao;
     private tipoTarefa tipotarefa;
     private Status status;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_conteudo")
     private Conteudo conteudo;
 
     public Tarefa(int codigo, String nome, String descricao, Date dataHoraInicio, Date dataHoraFim, Notificacao notificacao, tipoTarefa tipotarefa, Status status, Conteudo conteudo) {
