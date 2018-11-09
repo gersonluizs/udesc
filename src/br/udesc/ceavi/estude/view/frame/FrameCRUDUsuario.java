@@ -7,6 +7,7 @@ package br.udesc.ceavi.estude.view.frame;
 
 import br.udesc.ceavi.estude.view.principal.FramePrincipal;
 import java.awt.*;
+import java.util.Set;
 import javax.swing.*;
 
 /**
@@ -36,7 +37,10 @@ public class FrameCRUDUsuario extends FrameCRUD {
     private JTable tabela;
              
     private LayoutManager layout;
-    private GridBagConstraints cons;    
+    private GridBagConstraints cons;   
+    
+    
+    private JPanel painelFormulario;
         
     public static void main (String[] args){
         JFrame fPrincipal = new FramePrincipal();
@@ -62,6 +66,8 @@ public class FrameCRUDUsuario extends FrameCRUD {
         panelFormulario = new JPanel(layout);
         panelFormulario.setBorder(BorderFactory.createTitledBorder("Usuários"));
         
+        painelFormulario = new JPanel();
+        
         lbNome   = new JLabel("Nome:");
         lbCodigo = new JLabel("Cód.:");
         lbEmail  = new JLabel("E-mail:");
@@ -79,9 +85,10 @@ public class FrameCRUDUsuario extends FrameCRUD {
             {"1","Gerson Luiz", "email@mail.com"},
             {"2","João da Silva", "email@mail.com"},
             {"3","Pedro Cascaes", "email@mail.com"},
-            {"2","João da Silva", "email@mail.com"}
+            {"1","Gerson Luiz", "email@mail.com"}
         };
         tabela = new JTable(dados, colunas);
+        
         barraRolagem = new JScrollPane(tabela);
         
     }
@@ -168,8 +175,11 @@ public class FrameCRUDUsuario extends FrameCRUD {
         panelFormulario.add(tfRepetirSenha,cons);
                 
         /******/
-        super.addFormulario(panelFormulario);   
         
-        super.add(barraRolagem);   
+        painelFormulario.setLayout(new FlowLayout());
+        painelFormulario.add(panelFormulario);
+        painelFormulario.add(barraRolagem);
+                
+        super.addFormulario(painelFormulario);
     }
 }
