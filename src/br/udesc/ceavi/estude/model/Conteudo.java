@@ -53,8 +53,7 @@ public class Conteudo {
     @Column(name = "constatus")
     private Status status;
 
-    @Transient
-    private List<Tarefa> tarefas;
+  
 
     public Conteudo(int codigo, String nome, String descricao, Prioridade prioridade, Status status, List<Tarefa> tarefas) {
         this.codigo = codigo;
