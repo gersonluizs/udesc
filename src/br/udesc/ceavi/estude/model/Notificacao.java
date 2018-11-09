@@ -6,6 +6,8 @@
 package br.udesc.ceavi.estude.model;
 
 import java.util.Date;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Esta classe define os atributos e comportamentos de notificacao de tarefas para o usuario
@@ -22,6 +24,10 @@ public class Notificacao {
     private String descricao;
     private Date dataHora;
     private boolean visualizado;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
     
     public Notificacao(){
         super();
