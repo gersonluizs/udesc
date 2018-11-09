@@ -18,7 +18,7 @@ public class Tarefa {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @Column(name = "id_tarefa")
     private int codigo;
     private String nome;
     private String descricao;
