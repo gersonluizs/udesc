@@ -14,7 +14,7 @@ import javax.persistence.Table;
  * @version 1.0
  * @since 19/08/2018
  */
-
+//ad
 @Entity
 @Table(name = "acao")
 public class Acao {
