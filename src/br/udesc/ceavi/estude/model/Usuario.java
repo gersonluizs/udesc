@@ -3,6 +3,7 @@ package br.udesc.ceavi.estude.model;
 import br.udesc.ceavi.estude.control.Criptografia;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 
 /**
  * Esta classe define os atributos e comportamentos de um usario
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class Usuario {
     private int codigo;
+    @Column
     private String nome;
     private String email;
     private String senha;
