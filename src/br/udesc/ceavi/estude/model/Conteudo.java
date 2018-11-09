@@ -7,14 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 
 /**
  * Esta classe define os atributos e comportamentos dos conteudos de uma materia
  *
- * @author Gerson, Lucas and Matheus 
+ * @author Gerson, Lucas and Matheus
  * @version 1.0
  * @since 19/08/2018
  */
@@ -34,20 +36,24 @@ public class Conteudo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "concodigo")
     private int codigo;
-    
+
     @Column(name = "connome")
     private String nome;
-    
+
     @Column(name = "condescricao")
     private String descricao;
-    
+
     @Column(name = "conprioridade")
     private Prioridade prioridade;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "id_disciplina")
+    private Disciplina disciplina;
+
     @Column(name = "constatus")
     private Status status;
-
-    @Transient
+    
+    @OneToMany (mappedBy = "conteudo")
     private List<Tarefa> tarefas;
 
     public Conteudo(int codigo, String nome, String descricao, Prioridade prioridade, Status status, List<Tarefa> tarefas) {
