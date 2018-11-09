@@ -1,6 +1,9 @@
 package br.udesc.ceavi.estude.model;
 
 import java.util.Date;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Esta classe define os atributos e comportamentos das tarefas do usuario
@@ -11,7 +14,9 @@ import java.util.Date;
  */
 
 public class Tarefa {
-
+    
+    
+ 
     private int codigo;
     private String nome;
     private String descricao;
