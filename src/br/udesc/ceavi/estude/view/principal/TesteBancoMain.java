@@ -16,7 +16,7 @@ public class TesteBancoMain {
     
         
        //Instancia o JPADAO e insere no banco os objetos
-       DAO dao =new JPADAO();
+       DAO dao = new JPADAO();
         
     }
 }
