@@ -40,11 +40,15 @@ public class Tarefa {
     
     @OneToMany (mappedBy = "tarefa")
     private List<Notificacao> notificacoes;
+    
+    @Column(name = "tartipotarefa")
     private tipoTarefa tipotarefa;
+    
+    @Column(name = "tarstatus")
     private Status status;
     
     @ManyToOne
-    @JoinColumn(name = "id_conteudo")
+    @JoinColumn(name = "concodigo")
     private Conteudo conteudo;
 
     public Tarefa(int codigo, String nome, String descricao, Date dataHoraInicio, Date dataHoraFim, List<Notificacao> notificacoes, tipoTarefa tipotarefa, Status status, Conteudo conteudo) {
