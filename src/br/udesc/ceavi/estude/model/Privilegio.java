@@ -2,6 +2,11 @@
 package br.udesc.ceavi.estude.model;
 
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Esta classe define os atributos e comportamentos de privilegios do usuario
@@ -12,8 +17,16 @@ import java.util.Objects;
  */
 
 public class Privilegio {
+    
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id_privilegio")
     private int codigo;
+    
+    @ManyToOne
     private Acao acao;
+    
+    @ManyToOne
     private Tela tela;
 
     public Privilegio() {
