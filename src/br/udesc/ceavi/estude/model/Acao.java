@@ -21,10 +21,10 @@ public class Acao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_acao")
+    @Column(name = "acacodigo")
     private int codigo;
 
-    @Column(name = "descricao")
+    @Column(name = "acadescricao")
     private String descricao;
 
     public Acao() {

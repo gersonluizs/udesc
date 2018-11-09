@@ -1,6 +1,10 @@
 package br.udesc.ceavi.estude.model;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Esta classe define os atributos e comportamentos das tarefas do usuario
@@ -11,7 +15,10 @@ import java.util.Date;
  */
 
 public class Tarefa {
-
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_tarefa")
     private int codigo;
     private String nome;
     private String descricao;
@@ -20,8 +27,9 @@ public class Tarefa {
     private Notificacao notificacao;
     private tipoTarefa tipotarefa;
     private Status status;
+    private Conteudo conteudo;
 
-    public Tarefa(int codigo, String nome, String descricao, Date dataHoraInicio, Date dataHoraFim, Notificacao notificacao, tipoTarefa tipotarefa, Status status) {
+    public Tarefa(int codigo, String nome, String descricao, Date dataHoraInicio, Date dataHoraFim, Notificacao notificacao, tipoTarefa tipotarefa, Status status, Conteudo conteudo) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
@@ -30,6 +38,7 @@ public class Tarefa {
         this.notificacao = notificacao;
         this.tipotarefa = tipotarefa;
         this.status = status;
+        this.conteudo = conteudo;
     }
 
     public Tarefa() {
@@ -90,7 +99,18 @@ public class Tarefa {
 
     public void setStatus(Status status) {
         this.status = status;
+       
     }
+
+    public Conteudo getConteudo() {
+        return conteudo;
+    }
+
+    public void setConteudo(Conteudo conteudo) {
+        this.conteudo = conteudo;
+    }
+    
+    
 
     public void addNotificacao(int codigo, String assunto, String descricao, Date dataHora,
             boolean visualizado) {
@@ -103,7 +123,8 @@ public class Tarefa {
 
     @Override
     public String toString() {
-        return "Tarefa{" + "codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao + ", dataHoraInicio=" + dataHoraInicio + ", dataHoraFim=" + dataHoraFim + ", notificacao=" + notificacao + '}';
+        return "Tarefa{" + "codigo=" + codigo + ", nome=" + nome + ", descricao=" + descricao + ", dataHoraInicio=" + dataHoraInicio + ", dataHoraFim=" + dataHoraFim + ", notificacao=" + notificacao + ", tipotarefa=" + tipotarefa + ", status=" + status + ", conteudo=" + conteudo + '}';
     }
 
+ 
 }
