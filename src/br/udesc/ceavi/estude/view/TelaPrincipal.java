@@ -5,12 +5,6 @@
  */
 package br.udesc.ceavi.estude.view;
 
-import br.udesc.ceavi.estude.view.frame.FrameCRUDAcao;
-import br.udesc.ceavi.estude.view.frame.FrameCRUDAcaoManutencao;
-import br.udesc.ceavi.estude.view.frame.FrameCRUDTela;
-import br.udesc.ceavi.estude.view.frame.FrameCRUDTelaManutencao;
-import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
-import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuarioManutencao;
 import br.udesc.ceavi.estude.view.principal.FramePrincipal;
 import br.udesc.ceavi.estude.view.window.SplashScreen;
 import java.io.IOException;
