@@ -113,7 +113,7 @@ public class Agenda {
     }
 
     public void addTarefa(int codigo, String nome, String descricao, Date dataHoraInicio,
-            Date dataHoraFim, Notificacao notificacao) {
+            Date dataHoraFim) {
 
         tarefa = new Tarefa();
         tarefa.setCodigo(codigo);
@@ -121,7 +121,6 @@ public class Agenda {
         tarefa.setDescricao(descricao);
         tarefa.setDataHoraFim(dataHoraFim);
         tarefa.setDataHoraInicio(dataHoraInicio);
-      //  tarefa.addNotificacao(codigo, descricao, descricao, dataHoraFim, true);
     }
 
     public void removeTarefa() {
