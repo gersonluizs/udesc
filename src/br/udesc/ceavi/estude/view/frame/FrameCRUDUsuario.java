@@ -8,7 +8,6 @@ package br.udesc.ceavi.estude.view.frame;
 import br.udesc.ceavi.estude.view.principal.FramePrincipal;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 /**
  * Classe que determina os atributos e comportamento do CRUD do Usuário.
@@ -19,9 +18,11 @@ import javax.swing.border.LineBorder;
 public class FrameCRUDUsuario extends FrameCRUD {
     private static final Dimension dimension = new Dimension(500, 500);
     private static final String titulo = "Usuários";
+    
     private JPanel panelFormulario;
     private LayoutManager layoutFormulario;
     private GridBagConstraints cons;   
+    
     private JPanel panelContainer;
     private LayoutManager layoutContainer;
     
@@ -52,7 +53,6 @@ public class FrameCRUDUsuario extends FrameCRUD {
         addComponents();
     }   
     
-    @SuppressWarnings("empty-statement")
     private void initializeComponents() {
         layoutContainer = new FlowLayout();
         panelContainer = new JPanel(layoutContainer);
