@@ -28,13 +28,15 @@ public class Privilegio {
     private int codigo;
     
     @ManyToOne
+    @JoinColumn(name = "acacodigo")
     private Acao acao;
     
     @ManyToOne
+    @JoinColumn(name ="telcodigo")
     private Tela tela;
     
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "usucodigo")
     private Usuario usuario;
 
     public Privilegio() {

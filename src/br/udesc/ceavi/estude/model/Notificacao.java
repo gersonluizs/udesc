@@ -26,7 +26,7 @@ public class Notificacao {
     private boolean visualizado;
     
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "usucodigo")
     private Usuario usuario;
     
     public Notificacao(){
