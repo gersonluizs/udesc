@@ -36,7 +36,6 @@ public class Privilegio {
     private Tela tela;
     
     @ManyToOne
-    @JoinColumn(name = "usucodigo")
     private Usuario usuario;
 
     public Privilegio() {

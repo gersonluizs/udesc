@@ -3,11 +3,13 @@ package br.udesc.ceavi.estude.model;
 import br.udesc.ceavi.estude.control.Criptografia;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -38,10 +40,12 @@ public class Usuario {
     @Column
     private Agenda agenda;
     
-    @OneToMany (mappedBy = "usuario")
+    @OneToMany (mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JoinColumn(name = "usucodigo")
     private List<Notificacao> notificacoes;
     
-    @OneToMany (mappedBy = "usuario")
+    @OneToMany (mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JoinColumn(name = "usucodigo")
     private List<Privilegio> privilegios;
     
     public Usuario() {

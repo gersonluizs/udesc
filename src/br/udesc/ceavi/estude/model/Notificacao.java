@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Esta classe define os atributos e comportamentos de notificacao de tarefas para o usuario
@@ -38,6 +40,7 @@ public class Notificacao {
     @Column(name = "notdescricao")
     private String descricao;
     
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "notdatahora")
     private Date dataHora;
     
@@ -45,7 +48,6 @@ public class Notificacao {
     private boolean visualizado;
     
     @ManyToOne
-    @JoinColumn(name = "usucodigo")
     private Usuario usuario;
     
     public Notificacao(){
