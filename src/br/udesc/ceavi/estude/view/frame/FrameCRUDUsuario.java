@@ -8,11 +8,7 @@ package br.udesc.ceavi.estude.view.frame;
 import br.udesc.ceavi.estude.view.principal.FramePrincipal;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import static org.eclipse.persistence.expressions.ExpressionOperator.right;
 
 /**
  * Classe que determina os atributos e comportamento do CRUD do Usuário.
@@ -56,9 +52,10 @@ public class FrameCRUDUsuario extends FrameCRUD {
         addComponents();
     }   
     
+    @SuppressWarnings("empty-statement")
     private void initializeComponents() {
         layoutContainer = new FlowLayout();
-        panelContainer = new JPanel();
+        panelContainer = new JPanel(layoutContainer);
         
         layoutFormulario = new GridBagLayout();
         panelFormulario = new JPanel(layoutFormulario);
@@ -75,7 +72,6 @@ public class FrameCRUDUsuario extends FrameCRUD {
         tfSenha  = new JTextField();
         tfRepetirSenha  = new JTextField();
         
-                        
         String [] colunas = {"Cod.", "Nome", "Email"};
         Object [][] dados = {
             {"1","Gerson Luiz", "email@mail.com"},
@@ -97,7 +93,13 @@ public class FrameCRUDUsuario extends FrameCRUD {
             {"18","João da Silva", "email@mail.com"},
             {"19","Pedro Cascaes", "email@mail.com"},
             {"20","Gerson Luiz", "email@mail.com"},
-            {"21","João da Silva", "email@mail.com"}
+            {"21","João da Silva", "email@mail.com"},
+            {"22","João da Silva", "email@mail.com"},
+            {"23","João da Silva", "email@mail.com"},
+            {"24","João da Silva", "email@mail.com"},
+            {"25","João da Silva", "email@mail.com"},
+            {"26","João da Silva", "email@mail.com"},
+            {"27","João da Silva", "email@mail.com"}
         };
         
         tabela = new JTable(dados, colunas){
@@ -106,15 +108,11 @@ public class FrameCRUDUsuario extends FrameCRUD {
                 return false;
             }
         };
-        tabela.setBorder(new LineBorder(Color.black));
-        tabela.setGridColor(Color.black);
-        tabela.setShowGrid(true);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         barraRolagem = new JScrollPane();
         barraRolagem.getViewport().setBorder(null);
         barraRolagem.getViewport().add(tabela);
-        
         
     }
     private void addComponents() {
