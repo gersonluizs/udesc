@@ -6,8 +6,14 @@
 package br.udesc.ceavi.estude.model;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Esta classe define os atributos e comportamentos de notificacao de tarefas para o usuario
@@ -17,12 +23,25 @@ import javax.persistence.ManyToOne;
  * @since 19/08/2018
  */
 
+@Entity
+@Table(name = "notificacao")
 public class Notificacao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "notcodigo")
     private int codigo;
+    
+    @Column(name = "notassunto")
     private String assunto;
+    
+    @Column(name = "notdescricao")
     private String descricao;
+    
+    @Column(name = "notdatahora")
     private Date dataHora;
+    
+    @Column(name = "notvisualizado")
     private boolean visualizado;
     
     @ManyToOne

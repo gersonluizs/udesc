@@ -24,7 +24,7 @@ public class Privilegio {
     
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "id_privilegio")
+    @Column(name = "pricodigo")
     private int codigo;
     
     @ManyToOne
