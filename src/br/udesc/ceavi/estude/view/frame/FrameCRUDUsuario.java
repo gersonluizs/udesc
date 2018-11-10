@@ -7,8 +7,12 @@ package br.udesc.ceavi.estude.view.frame;
 
 import br.udesc.ceavi.estude.view.principal.FramePrincipal;
 import java.awt.*;
-import java.util.Set;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import static org.eclipse.persistence.expressions.ExpressionOperator.right;
 
 /**
  * Classe que determina os atributos e comportamento do CRUD do Usuário.
@@ -20,6 +24,13 @@ public class FrameCRUDUsuario extends FrameCRUD {
     private static final Dimension dimension = new Dimension(500, 500);
     private static final String titulo = "Usuários";
     private JPanel panelFormulario;
+    private LayoutManager layoutFormulario;
+    private GridBagConstraints cons;   
+    private JPanel panelContainer;
+    private LayoutManager layoutContainer;
+    
+    private JScrollPane barraRolagem;
+    private JTable tabela;
     
     private JLabel lbCodigo;
     private JLabel lbNome;
@@ -32,15 +43,6 @@ public class FrameCRUDUsuario extends FrameCRUD {
     JTextField tfEmail;
     JTextField tfSenha;
     JTextField tfRepetirSenha;
-    
-    private JScrollPane barraRolagem;
-    private JTable tabela;
-             
-    private LayoutManager layout;
-    private GridBagConstraints cons;   
-    
-    
-    private JPanel painelFormulario;
         
     public static void main (String[] args){
         JFrame fPrincipal = new FramePrincipal();
@@ -54,19 +56,12 @@ public class FrameCRUDUsuario extends FrameCRUD {
         addComponents();
     }   
     
-    public FrameCRUDUsuario(String titulo){
-        super(titulo, dimension);
-        
-        initializeComponents();
-        addComponents();
-    }
-    
     private void initializeComponents() {
-        layout = new GridBagLayout();
-        panelFormulario = new JPanel(layout);
-        panelFormulario.setBorder(BorderFactory.createTitledBorder("Usuários"));
+        layoutContainer = new FlowLayout();
+        panelContainer = new JPanel();
         
-        painelFormulario = new JPanel();
+        layoutFormulario = new GridBagLayout();
+        panelFormulario = new JPanel(layoutFormulario);
         
         lbNome   = new JLabel("Nome:");
         lbCodigo = new JLabel("Cód.:");
@@ -80,16 +75,46 @@ public class FrameCRUDUsuario extends FrameCRUD {
         tfSenha  = new JTextField();
         tfRepetirSenha  = new JTextField();
         
+                        
         String [] colunas = {"Cod.", "Nome", "Email"};
         Object [][] dados = {
             {"1","Gerson Luiz", "email@mail.com"},
             {"2","João da Silva", "email@mail.com"},
             {"3","Pedro Cascaes", "email@mail.com"},
-            {"1","Gerson Luiz", "email@mail.com"}
+            {"4","Gerson Luiz", "email@mail.com"},
+            {"5","João da Silva", "email@mail.com"},
+            {"6","Pedro Cascaes", "email@mail.com"},
+            {"7","Gerson Luiz", "email@mail.com"},
+            {"8","João da Silva", "email@mail.com"},
+            {"9","Pedro Cascaes", "email@mail.com"},
+            {"10","Gerson Luiz", "email@mail.com"},
+            {"12","João da Silva", "email@mail.com"},
+            {"13","Pedro Cascaes", "email@mail.com"},
+            {"14","Gerson Luiz", "email@mail.com"},
+            {"15","João da Silva", "email@mail.com"},
+            {"16","Pedro Cascaes", "email@mail.com"},
+            {"17","Gerson Luiz", "email@mail.com"},
+            {"18","João da Silva", "email@mail.com"},
+            {"19","Pedro Cascaes", "email@mail.com"},
+            {"20","Gerson Luiz", "email@mail.com"},
+            {"21","João da Silva", "email@mail.com"}
         };
-        tabela = new JTable(dados, colunas);
         
-        barraRolagem = new JScrollPane(tabela);
+        tabela = new JTable(dados, colunas){
+            @Override
+            public boolean isCellEditable(int rowIndex, int vColIndex) {
+                return false;
+            }
+        };
+        tabela.setBorder(new LineBorder(Color.black));
+        tabela.setGridColor(Color.black);
+        tabela.setShowGrid(true);
+        tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        barraRolagem = new JScrollPane();
+        barraRolagem.getViewport().setBorder(null);
+        barraRolagem.getViewport().add(tabela);
+        
         
     }
     private void addComponents() {
@@ -176,10 +201,9 @@ public class FrameCRUDUsuario extends FrameCRUD {
                 
         /******/
         
-        painelFormulario.setLayout(new FlowLayout());
-        painelFormulario.add(panelFormulario);
-        painelFormulario.add(barraRolagem);
+        panelContainer.add(panelFormulario);
+        panelContainer.add(barraRolagem);
                 
-        super.addFormulario(painelFormulario);
+        super.addFormulario(panelContainer);
     }
 }

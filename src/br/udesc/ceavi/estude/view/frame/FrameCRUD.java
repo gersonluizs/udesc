@@ -19,7 +19,8 @@ public abstract class FrameCRUD extends JInternalFrame {
     private JPanel panelPrincipal;
     private JPanel panelBotoesCRUD;
     private Dimension dimension;
-    private LayoutManager layout;
+    private LayoutManager layoutFrameCRUD;
+    private LayoutManager layoutPanelPrincipal;
     
     public FrameCRUD(String titulo, Dimension dimension) throws HeadlessException {
         this.dimension = dimension;
@@ -28,25 +29,27 @@ public abstract class FrameCRUD extends JInternalFrame {
         
         super.setSize(dimension);
         super.setTitle(titulo);
-        super.setLayout(layout);
-        super.setResizable(false);
-        super.setClosable(true);
     }
     
     private void initializeComponets() {
+        panelBotoesCRUD = new CRUDActionPanel(this);
+        layoutFrameCRUD = new FlowLayout();
+        super.setLayout(layoutFrameCRUD);
+        super.setResizable(false);
+        super.setClosable(true);
+        
         panelPrincipal = new JPanel();
         panelPrincipal.setSize(dimension);
-        panelBotoesCRUD = new CRUDActionPanel(this);
-        layout = new BorderLayout();
-        panelPrincipal.setLayout(layout);        
+        layoutPanelPrincipal = new BorderLayout();
+        panelPrincipal.setLayout(layoutPanelPrincipal);
     }
     
     private void addComponets() {
-       this.setContentPane(panelPrincipal);
        panelPrincipal.add(panelBotoesCRUD, BorderLayout.SOUTH); 
+       this.setContentPane(panelPrincipal);
     }
     
     public void addFormulario(Container container){
-        panelPrincipal.add(container, BorderLayout.CENTER);
+        panelPrincipal.add(container, BorderLayout.NORTH);
     }
 }
