@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public class FrameCRUDTarefas extends FrameCRUD {
 
-    private static final Dimension dimension = new Dimension(500, 500);
+    private static final Dimension dimension = new Dimension(700, 500);
     private static final String titulo = "Tarefas";
 
     private JPanel panelFormulario;
@@ -21,6 +21,7 @@ public class FrameCRUDTarefas extends FrameCRUD {
     private LayoutManager layoutContainer;
 
     private JScrollPane barraRolagem;
+    private JTable tabela;
 
     public static void main(String[] args) {
         JFrame fPrincipal = new FramePrincipal();
@@ -41,8 +42,24 @@ public class FrameCRUDTarefas extends FrameCRUD {
         layoutFormulario = new GridBagLayout();
         panelFormulario = new JPanel(layoutFormulario);
 
+        String[] colunas = {"Atrasadas", "Realizadas", "p/ fazer"};
+        Object[][] dados = {
+            {"1-", "1-", "1-"},
+            {"2-", "2-", "2-"},
+            {"3-", "3-", "3-"},
+            {"4-", "4-", "4-"},};
+
+        tabela = new JTable(dados, colunas) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int vColIndex) {
+                return false;
+            }
+        };
+        tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         barraRolagem = new JScrollPane();
         barraRolagem.getViewport().setBorder(null);
+        barraRolagem.getViewport().add(tabela);
 
     }
 
