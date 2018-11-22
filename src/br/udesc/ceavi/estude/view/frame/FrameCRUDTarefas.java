@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public class FrameCRUDTarefas extends FrameCRUD {
 
-    private static final Dimension dimension = new Dimension(500, 500);
+    private static final Dimension dimension = new Dimension(700, 500);
     private static final String titulo = "Tarefas";
 
     private JPanel panelFormulario;
@@ -44,10 +44,10 @@ public class FrameCRUDTarefas extends FrameCRUD {
 
         String[] colunas = {"Atrasadas", "Realizadas", "p/ fazer"};
         Object[][] dados = {
-            {"1", "", ""},
-            {"2", "", ""},
-            {"3", "", ""},
-            {"4", "", ""},};
+            {"1-", "1-", "1-"},
+            {"2-", "2-", "2-"},
+            {"3-", "3-", "3-"},
+            {"4-", "4-", "4-"},};
 
         tabela = new JTable(dados, colunas) {
             @Override
