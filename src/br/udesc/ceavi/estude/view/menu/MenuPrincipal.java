@@ -5,12 +5,14 @@
  */
 package br.udesc.ceavi.estude.view.menu;
 
+import br.udesc.ceavi.estude.view.frame.FrameCRUDAcao;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudos;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDDisciplinas;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDTarefas;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
 import br.udesc.ceavi.estude.view.listener.MenuActionListener;
 import br.udesc.ceavi.estude.view.principal.FramePrincipal;
+import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -87,6 +89,7 @@ public class MenuPrincipal extends JMenuBar {
         menuItemCRUDConteudo.addActionListener(new MenuActionListener(frame, FrameCRUDConteudos.class));
         menuItemCRUDDisciplina.addActionListener(new MenuActionListener(frame, FrameCRUDDisciplinas.class));
         menuItemCRUDTarefa.addActionListener(new MenuActionListener(frame, FrameCRUDTarefas.class));
+        menuItemCRUDAcao.addActionListener(new MenuActionListener(frame, FrameCRUDAcao.class));
     }
 
 }
