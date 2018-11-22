@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
  * Esta classe define os atributos e comportamentos dos conteudos de uma materia
@@ -52,8 +51,8 @@ public class Conteudo {
 
     @Column(name = "constatus")
     private Status status;
-    
-    @OneToMany (mappedBy = "conteudo")
+
+    @OneToMany(mappedBy = "conteudo")
     private List<Tarefa> tarefas;
 
     public Conteudo(int codigo, String nome, String descricao, Prioridade prioridade, Status status, List<Tarefa> tarefas) {
