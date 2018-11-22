@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,16 +29,17 @@ public class Usuario {
     @Column(name = "usucodigo")
     private int codigo;
     
-    @Column
+    @Column(name = "usunome")
     private String nome;
     
-    @Column
+    @Column(name = "usuemail")
     private String email;
     
-    @Column
+    @Column(name = "ususenha")
     private String senha;
     
-    @Column
+    @OneToOne
+    @Column(name = "agecodigo")
     private Agenda agenda;
     
     @OneToMany (mappedBy = "usuario", cascade = CascadeType.ALL)

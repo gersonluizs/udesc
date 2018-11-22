@@ -32,6 +32,10 @@ public class Tela {
         this.descricao = descricao;
     }
 
+    public Tela() {
+        super();
+    }
+    
     public int getCodigo() {
         return codigo;
     }

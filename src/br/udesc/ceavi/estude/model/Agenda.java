@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 /**
@@ -39,7 +41,8 @@ public class Agenda {
     @Column(name = "t_ocupado")
     private String tempoOcupado;
        
-    @Transient
+    @OneToOne
+    @Column(name = "tarcodigo")
     private Tarefa tarefa;
 
     public Agenda(int codigo, String nome, String descricao, String horarioDedicado, String tempoDisponivel, String tempoOcupado, Tarefa tarefa) {

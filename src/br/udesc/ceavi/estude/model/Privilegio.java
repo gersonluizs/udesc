@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -27,11 +28,11 @@ public class Privilegio {
     @Column(name = "pricodigo")
     private int codigo;
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "acacodigo")
     private Acao acao;
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name ="telcodigo")
     private Tela tela;
     
