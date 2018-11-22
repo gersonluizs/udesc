@@ -5,6 +5,9 @@
  */
 package br.udesc.ceavi.estude.view.menu;
 
+import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudos;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDDisciplinas;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDTarefas;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
 import br.udesc.ceavi.estude.view.listener.MenuActionListener;
 import br.udesc.ceavi.estude.view.principal.FramePrincipal;
@@ -14,10 +17,12 @@ import javax.swing.JMenuItem;
 
 /**
  * Classe que define o comportamento e atributos do menu do sistema
+ *
  * @author Gerson Luiz
  * @since 05/10/2018
  */
 public class MenuPrincipal extends JMenuBar {
+
     private JMenu menuCadastro;
     private JMenuItem menuItemCRUDAcao;
     private JMenuItem menuItemCRUDAgenda;
@@ -28,39 +33,39 @@ public class MenuPrincipal extends JMenuBar {
     private JMenuItem menuItemCRUDTarefa;
     private JMenuItem menuItemCRUDTela;
     private JMenuItem menuItemCRUDUsuario;
-    
-    private JMenu     menuAjuda;
+
+    private JMenu menuAjuda;
     private JMenuItem menuItemSobre;
-    
+
     private final FramePrincipal frame;
-    
+
     public MenuPrincipal(FramePrincipal frame) {
         super();
         this.frame = frame;
-        
+
         initializeComponents();
         construirMenu();
-        
+
         addListenersMenu();
     }
-    
-    private void initializeComponents(){
-       menuCadastro           = new JMenu("Cadastros");
-       menuItemCRUDAcao       = new JMenuItem("Ações");
-       menuItemCRUDConteudo   = new JMenuItem("Conteúdos");
-       menuItemCRUDAgenda     = new JMenuItem("Agenda");
-       menuItemCRUDDisciplina = new JMenuItem("Disciplinas");
-       menuItemCRUDNotificao  = new JMenuItem("Notificações");
-       menuItemCRUDPrivilegio = new JMenuItem("Privilégios");
-       menuItemCRUDTarefa     = new JMenuItem("Tarefas");
-       menuItemCRUDTela       = new JMenuItem("Telas");
-       menuItemCRUDUsuario    = new JMenuItem("Usuários");
-       
-       menuAjuda              = new JMenu("Ajuda");
-       menuItemSobre          = new JMenuItem("Sobre");
+
+    private void initializeComponents() {
+        menuCadastro = new JMenu("Cadastros");
+        menuItemCRUDAcao = new JMenuItem("Ações");
+        menuItemCRUDConteudo = new JMenuItem("Conteúdos");
+        menuItemCRUDAgenda = new JMenuItem("Agenda");
+        menuItemCRUDDisciplina = new JMenuItem("Disciplinas");
+        menuItemCRUDNotificao = new JMenuItem("Notificações");
+        menuItemCRUDPrivilegio = new JMenuItem("Privilégios");
+        menuItemCRUDTarefa = new JMenuItem("Tarefas");
+        menuItemCRUDTela = new JMenuItem("Telas");
+        menuItemCRUDUsuario = new JMenuItem("Usuários");
+
+        menuAjuda = new JMenu("Ajuda");
+        menuItemSobre = new JMenuItem("Sobre");
     }
-    
-    private void construirMenu(){
+
+    private void construirMenu() {
         menuCadastro.add(menuItemCRUDAcao);
         menuCadastro.add(menuItemCRUDConteudo);
         menuCadastro.add(menuItemCRUDAgenda);
@@ -70,14 +75,18 @@ public class MenuPrincipal extends JMenuBar {
         menuCadastro.add(menuItemCRUDTarefa);
         menuCadastro.add(menuItemCRUDTela);
         menuCadastro.add(menuItemCRUDUsuario);
-        
+
         menuAjuda.add(menuItemSobre);
-        
+
         super.add(menuCadastro);
         super.add(menuAjuda);
     }
-    
-    private void addListenersMenu(){
-         menuItemCRUDUsuario.addActionListener(new MenuActionListener(frame, FrameCRUDUsuario.class));
+
+    private void addListenersMenu() {
+        menuItemCRUDUsuario.addActionListener(new MenuActionListener(frame, FrameCRUDUsuario.class));
+        menuItemCRUDConteudo.addActionListener(new MenuActionListener(frame, FrameCRUDConteudos.class));
+        menuItemCRUDDisciplina.addActionListener(new MenuActionListener(frame, FrameCRUDDisciplinas.class));
+        menuItemCRUDTarefa.addActionListener(new MenuActionListener(frame, FrameCRUDTarefas.class));
     }
+
 }
