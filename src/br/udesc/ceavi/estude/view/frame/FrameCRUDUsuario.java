@@ -90,16 +90,6 @@ public class FrameCRUDUsuario extends FrameCRUD {
             {"15","João da Silva", "email@mail.com"},
             {"16","Pedro Cascaes", "email@mail.com"},
             {"17","Gerson Luiz", "email@mail.com"},
-            {"18","João da Silva", "email@mail.com"},
-            {"19","Pedro Cascaes", "email@mail.com"},
-            {"20","Gerson Luiz", "email@mail.com"},
-            {"21","João da Silva", "email@mail.com"},
-            {"22","João da Silva", "email@mail.com"},
-            {"23","João da Silva", "email@mail.com"},
-            {"24","João da Silva", "email@mail.com"},
-            {"25","João da Silva", "email@mail.com"},
-            {"26","João da Silva", "email@mail.com"},
-            {"27","João da Silva", "email@mail.com"}
         };
         
         tabela = new JTable(dados, colunas){
@@ -110,9 +100,8 @@ public class FrameCRUDUsuario extends FrameCRUD {
         };
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
-        barraRolagem = new JScrollPane();
-        barraRolagem.getViewport().setBorder(null);
-        barraRolagem.getViewport().add(tabela);
+        barraRolagem = new JScrollPane(tabela);
+        barraRolagem.setBorder(null);
         
     }
     private void addComponents() {
@@ -201,6 +190,7 @@ public class FrameCRUDUsuario extends FrameCRUD {
         
         panelContainer.add(panelFormulario);
         panelContainer.add(barraRolagem);
+        barraRolagem.setSize(150, 150);
                 
         super.addFormulario(panelContainer);
     }

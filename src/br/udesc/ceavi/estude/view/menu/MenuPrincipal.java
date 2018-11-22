@@ -12,7 +12,6 @@ import br.udesc.ceavi.estude.view.frame.FrameCRUDTarefas;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
 import br.udesc.ceavi.estude.view.listener.MenuActionListener;
 import br.udesc.ceavi.estude.view.principal.FramePrincipal;
-import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
