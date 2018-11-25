@@ -151,7 +151,12 @@ public class ListenersCRUDAcao {
             acao.setDescricao(tela.getTfDescricao().getText());
             
             try {
-                dao.inserir(acao);
+                 if( tela.getTfCodigo().getText().equals("") || tela.getTfCodigo().getText().equals(null) ){
+                    dao.inserir(acao);
+                } else{
+                    acao.setCodigo( Integer.parseInt(tela.getTfCodigo().getText()) );
+                    dao.atualizar(acao);
+                } 
                 
             } catch (Exception ex) {
                 //Apresenta o erro em uma mensagem para o usuário.
