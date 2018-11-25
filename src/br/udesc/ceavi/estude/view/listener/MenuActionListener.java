@@ -5,13 +5,16 @@
  */
 package br.udesc.ceavi.estude.view.listener;
 
+import br.udesc.ceavi.estude.model.Acao;
+import br.udesc.ceavi.estude.model.Usuario;
 import br.udesc.ceavi.estude.view.frame.FrameCRUD;
-import br.udesc.ceavi.estude.view.principal.FramePrincipal;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDAcao;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
+import br.udesc.ceavi.estude.view.principal.FrameSistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JInternalFrame;
 
 /**
  * Classe que define os atributos e comportamento dos ActionListeners dos Menus
@@ -19,22 +22,41 @@ import javax.swing.JInternalFrame;
  * @since 05/10/2018
  */
 public class MenuActionListener implements ActionListener{
-    private final Class<? extends JInternalFrame> classe;
-    private final FramePrincipal tela;
-    private JInternalFrame frame;
+    //Classe que definira a especialização do FrameCRUD
+    private final Class<? extends FrameCRUD> classe;
+    
+    //JInternalFrame que deverá ser cosntruída
+    private FrameCRUD frame;
+ 
+    //Parent (tela da aplicação principal) onde as JInternalFrame deverão ser exibidas
+    private final FrameSistema tela;
 
-    public MenuActionListener(FramePrincipal tela, Class<? extends FrameCRUD> classe) {
+    public MenuActionListener(FrameSistema tela, Class<? extends FrameCRUD> classe) {
         this.tela = tela;
         this.classe = classe;
     }
-    
+
+        
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            //Definindo o model do frame
             frame = classe.newInstance();
             
+            // Definindo o internalFrame da tela
             tela.adicionarFrameInterno(frame);
             
+            
+            //Define o Controller para um cadastro CRUDEndereco
+            
+            //
+            if( frame.getClass() == FrameCRUDUsuario.class ){
+                ListenersCRUDUsuario listenerUsuario = new ListenersCRUDUsuario( new Usuario(), frame);
+            } else if( frame.getClass() == FrameCRUDAcao.class){
+                ListenersCRUDAcao listenerAcao = new ListenersCRUDAcao( new Acao(), frame);
+            } else {
+            }{
+            }
             frame.setVisible(true);
             
         } catch (InstantiationException | IllegalAccessException ex) {

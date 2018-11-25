@@ -5,8 +5,11 @@
  */
 package br.udesc.ceavi.estude.control.dao.core;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.metamodel.EntityType;
 
 /**
  *
@@ -19,8 +22,7 @@ public class JPADAO<X> implements DAO {
 
     public JPADAO() {
         super();
-        emf = javax.persistence.Persistence.
-                createEntityManagerFactory("ProjetoPratico");
+        emf = javax.persistence.Persistence.createEntityManagerFactory("ProjetoPratico");
         em = emf.createEntityManager();
     }
 
@@ -67,8 +69,8 @@ public class JPADAO<X> implements DAO {
     }
 
     @Override
-    public Object pesquisarPorId(Class tipo, long id) throws Exception {
-        Object object = null;
+    public Object pesquisarPorId(Class tipo, int id) throws Exception {
+        Object object = tipo.newInstance();
         em.getTransaction().begin();
 
         try {
@@ -79,7 +81,31 @@ public class JPADAO<X> implements DAO {
             em.getTransaction().rollback();
         }
 
-        return object;
+        return (tipo.cast(object));
     }
+    /*
+    public List<Object> getAllRegistros(Class tipo) throws Exception {
+        List<Object> retorno;
+        String sql;
+        EntityType et;
+        
+        retorno = new ArrayList<>();
+        
+        
+        
+        sql = "select * from " ;
+                
+        em.getTransaction().begin();
 
+        try {
+            retorno = em.createQuery(tipo);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        
+        return retorno;
+    }*/
+    
 }

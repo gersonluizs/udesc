@@ -5,9 +5,11 @@
  */
 package br.udesc.ceavi.estude.view.frame;
 
-import br.udesc.ceavi.estude.view.principal.FramePrincipal;
+import br.udesc.ceavi.estude.model.Usuario;
+import br.udesc.ceavi.estude.view.principal.FrameSistema;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Classe que determina os atributos e comportamento do CRUD do Usuário.
@@ -19,16 +21,8 @@ public class FrameCRUDUsuario extends FrameCRUD {
     private static final Dimension dimension = new Dimension(500, 500);
     private static final String titulo = "Usuários";
     
-    private JPanel panelFormulario;
-    private LayoutManager layoutFormulario;
-    private GridBagConstraints cons;   
-    
-    private JPanel panelContainer;
-    private LayoutManager layoutContainer;
-    
-    private JScrollPane barraRolagem;
-    private JTable tabela;
-    
+    private Usuario usuario;
+  
     private JLabel lbCodigo;
     private JLabel lbNome;
     private JLabel lbEmail;
@@ -40,10 +34,30 @@ public class FrameCRUDUsuario extends FrameCRUD {
     JTextField tfEmail;
     JTextField tfSenha;
     JTextField tfRepetirSenha;
+    
+    private JPanel panelFormulario;
+    private LayoutManager layoutFormulario;
+    private GridBagConstraints cons;   
+    
+    private JPanel panelContainer;
+    private LayoutManager layoutContainer;
+    
+    private JScrollPane barraRolagem;
+    private JTable tabela;
+    private DefaultTableModel modelo;
         
     public static void main (String[] args){
-        JFrame fPrincipal = new FramePrincipal();
+        JFrame fPrincipal = new FrameSistema();
         fPrincipal.setVisible(true);
+    }
+    
+    public FrameCRUDUsuario(Usuario usuario){
+        super(titulo, dimension);
+        
+        this.usuario = usuario;
+        
+        initializeComponents();
+        addComponents();
     }
     
     public FrameCRUDUsuario(){
@@ -51,8 +65,47 @@ public class FrameCRUDUsuario extends FrameCRUD {
         
         initializeComponents();
         addComponents();
-    }   
+    }
     
+    public void setEndereco(Usuario usuario){
+        this.usuario = usuario;
+        carregarCampos();
+    }
+    
+    private void criarTabela(){
+        tabela = new JTable(){
+            @Override
+            public boolean isCellEditable(int rowIndex, int vColIndex) {
+                return false;
+            }
+        };
+        
+        tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        barraRolagem = new JScrollPane(tabela);
+        barraRolagem.setBorder(null);
+    }
+    
+    private void carregarDadosTabela(){
+        modelo = new javax.swing.table.DefaultTableModel();
+        modelo.addColumn("Cod.");
+        modelo.addColumn("Nome");
+        modelo.addColumn("Email");
+        
+        modelo.setNumRows(0);
+        
+        /* 
+        try {
+            usuarios = dao.getAllRegistros(Usuario.class);
+        } catch (Exception ex) {
+            Logger.getLogger(FrameCRUDUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        */
+        
+        tabela.setModel(modelo);
+    }
+        
     private void initializeComponents() {
         layoutContainer = new FlowLayout();
         panelContainer = new JPanel(layoutContainer);
@@ -71,39 +124,17 @@ public class FrameCRUDUsuario extends FrameCRUD {
         tfEmail  = new JTextField();
         tfSenha  = new JTextField();
         tfRepetirSenha  = new JTextField();
-        
-        String [] colunas = {"Cod.", "Nome", "Email"};
-        Object [][] dados = {
-            {"1","Gerson Luiz", "email@mail.com"},
-            {"2","João da Silva", "email@mail.com"},
-            {"3","Pedro Cascaes", "email@mail.com"},
-            {"4","Gerson Luiz", "email@mail.com"},
-            {"5","João da Silva", "email@mail.com"},
-            {"6","Pedro Cascaes", "email@mail.com"},
-            {"7","Gerson Luiz", "email@mail.com"},
-            {"8","João da Silva", "email@mail.com"},
-            {"9","Pedro Cascaes", "email@mail.com"},
-            {"10","Gerson Luiz", "email@mail.com"},
-            {"12","João da Silva", "email@mail.com"},
-            {"13","Pedro Cascaes", "email@mail.com"},
-            {"14","Gerson Luiz", "email@mail.com"},
-            {"15","João da Silva", "email@mail.com"},
-            {"16","Pedro Cascaes", "email@mail.com"},
-            {"17","Gerson Luiz", "email@mail.com"},
-        };
-        
-        tabela = new JTable(dados, colunas){
-            @Override
-            public boolean isCellEditable(int rowIndex, int vColIndex) {
-                return false;
-            }
-        };
-        tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
-        barraRolagem = new JScrollPane(tabela);
-        barraRolagem.setBorder(null);
-        
     }
+    
+    @Override
+    public void setEditavel(boolean b){
+        tfNome.setEditable(b);
+        tfCodigo.setEditable(b);
+        tfEmail.setEditable(b);
+        tfSenha.setEditable(b);
+        tfRepetirSenha.setEditable(b);
+    }
+    
     private void addComponents() {
         cons = new GridBagConstraints();
         cons.gridx = 0;
@@ -189,9 +220,68 @@ public class FrameCRUDUsuario extends FrameCRUD {
         /******/
         
         panelContainer.add(panelFormulario);
-        panelContainer.add(barraRolagem);
-        barraRolagem.setSize(150, 150);
+        
+        /*panelContainer.add(barraRolagem);
+        barraRolagem.setSize(150, 150);*/
                 
         super.addFormulario(panelContainer);
+    }
+
+    @Override
+    public void limparCampos() {
+        tfCodigo.setText("");
+        tfNome.setText("");
+        tfEmail.setText("");
+        tfSenha.setText("");
+        tfRepetirSenha.setText("");
+
+        super.repaint();
+    }
+    
+    @Override
+    public void carregarCampos() {
+        tfCodigo.setText("" + usuario.getCodigo());
+        tfNome.setText(usuario.getNome());
+        tfEmail.setText(usuario.getEmail());
+    }
+
+    public JTextField getTfCodigo() {
+        return tfCodigo;
+    }
+
+    public void setTfCodigo(JTextField tfCodigo) {
+        this.tfCodigo = tfCodigo;
+    }
+
+    public JTextField getTfNome() {
+        return tfNome;
+    }
+
+    public void setTfNome(JTextField tfNome) {
+        this.tfNome = tfNome;
+    }
+
+    public JTextField getTfEmail() {
+        return tfEmail;
+    }
+
+    public void setTfEmail(JTextField tfEmail) {
+        this.tfEmail = tfEmail;
+    }
+
+    public JTextField getTfSenha() {
+        return tfSenha;
+    }
+
+    public void setTfSenha(JTextField tfSenha) {
+        this.tfSenha = tfSenha;
+    }
+
+    public JTextField getTfRepetirSenha() {
+        return tfRepetirSenha;
+    }
+
+    public void setTfRepetirSenha(JTextField tfRepetirSenha) {
+        this.tfRepetirSenha = tfRepetirSenha;
     }
 }

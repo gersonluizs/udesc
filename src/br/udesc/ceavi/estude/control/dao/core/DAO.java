@@ -5,6 +5,8 @@
  */
 package br.udesc.ceavi.estude.control.dao.core;
 
+import java.util.List;
+
 /**
  *
  * @author Dell
@@ -16,7 +18,7 @@ public interface DAO<X> {
     boolean atualizar(X obj) throws Exception;
 
     boolean deletar(X obj) throws Exception;
-
-    public Object pesquisarPorId(Class tipo, long id) throws Exception;
-
+    
+    public Object pesquisarPorId(Class tipo, int id) throws Exception;
+    
 }

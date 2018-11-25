@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * Esta classe define os atributos e comportamentos de um usario
@@ -38,16 +39,19 @@ public class Usuario {
     @Column(name = "ususenha")
     private String senha;
     
-    @OneToOne
-    @Column(name = "agecodigo")
+    /*@OneToOne
+    @Column(name = "agecodigo")*/
+    @Transient
     private Agenda agenda;
     
-    @OneToMany (mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JoinColumn(name = "usucodigo")
+    /*@OneToMany (mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JoinColumn(name = "usucodigo")*/
+    @Transient
     private List<Notificacao> notificacoes;
     
-    @OneToMany (mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JoinColumn(name = "usucodigo")
+    /*@OneToMany (mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JoinColumn(name = "usucodigo")*/
+    @Transient
     private List<Privilegio> privilegios;
     
     public Usuario() {
@@ -55,12 +59,12 @@ public class Usuario {
         this.privilegios = new ArrayList<Privilegio>();
     }
 
-    public Usuario(int codigo, String nome, String email, String senha, Agenda agenda) {
+    public Usuario(int codigo, String nome, String email, String senha) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;
-        this.senha = senha;
-        this.agenda = agenda;
+        setSenha(senha);
+        this.agenda = new Agenda();
         this.notificacoes = new ArrayList<Notificacao>();
         this.privilegios = new ArrayList<Privilegio>();
     }
