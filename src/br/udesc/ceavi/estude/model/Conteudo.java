@@ -55,7 +55,6 @@ public class Conteudo {
     @OneToMany(mappedBy = "conteudo")
     private List<Tarefa> tarefas;
 
-    
     public Conteudo(int codigo, String nome, String descricao) {
         this.codigo = codigo;
         this.nome = nome;
@@ -64,14 +63,9 @@ public class Conteudo {
         this.status = Status.PENDENTE;
         tarefas = new ArrayList<>();
     }
-    
-    public Conteudo(int codigo, String nome, String descricao, Prioridade prioridade, Status status, List<Tarefa> tarefas) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.prioridade = prioridade;
-        this.status = status;
-        tarefas = new ArrayList<>();
+
+    public Conteudo() {
+        super();
     }
 
     public int getCodigo() {
