@@ -10,10 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 /**
  * Esta classe define os atributos e comportamentos da agenda de um usuario
  *
- * @author Gerson, Lucas and Matheus 
+ * @author Gerson, Lucas and Matheus
  * @version 1.0
  * @since 19/08/2018
  */
@@ -25,22 +26,22 @@ public class Agenda {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_agenda")
     private int codigo;
-    
+
     @Column(name = "nome")
     private String nome;
-    
+
     @Column(name = "descricao")
     private String descricao;
-    
+
     @Column(name = "t_Dedicado")
     private String horarioDedicado;
-    
+
     @Column(name = "t_disponivel")
     private String tempoDisponivel;
-    
+
     @Column(name = "t_ocupado")
     private String tempoOcupado;
-       
+
     @OneToOne
     @Column(name = "tarcodigo")
     private Tarefa tarefa;
@@ -56,6 +57,10 @@ public class Agenda {
     }
 
     public Agenda() {
+        super();
+    }
+
+    public Agenda(int i, String descricao) {
         super();
     }
 
