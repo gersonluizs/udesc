@@ -79,6 +79,8 @@ public class MenuActionListener implements ActionListener {
                 ListenersCRUDPrivilegios listenerPrivilegio= new ListenersCRUDPrivilegios(new Privilegio(), frame);
             } else if (frame.getClass() == FrameCRUDTela.class) {
                 ListenersCRUDTela listenerTela= new ListenersCRUDTela(new Tela(), frame);
+            } else if (frame.getClass() == FrameCRUDAgenda.class) {
+                ListenersCRUDAgenda listenerAgenda= new ListenersCRUDAgenda(new Agenda(), frame);
             } else {
             }
             {
