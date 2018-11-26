@@ -166,9 +166,9 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("" + conteudo.getCodigo());
         tfNome.setText(conteudo.getNome());
         tfDescricao.setText(conteudo.getDescricao());
-        tfDisciplina.setText(conteudo.getDescricao());
-        tfPrioridade.setText(conteudo.getDescricao());
-        tfStatus.setText(conteudo.getDescricao());
+        tfDisciplina.setText(""+conteudo.getDisciplina());
+        tfPrioridade.setText(""+conteudo.getPrioridade());
+        tfStatus.setText(""+conteudo.getStatus());
 
     }
 
