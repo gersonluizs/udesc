@@ -12,6 +12,7 @@ import br.udesc.ceavi.estude.model.Disciplina;
 import br.udesc.ceavi.estude.model.Notificacao;
 import br.udesc.ceavi.estude.model.Privilegio;
 import br.udesc.ceavi.estude.model.Tarefa;
+import br.udesc.ceavi.estude.model.Tela;
 import br.udesc.ceavi.estude.model.Usuario;
 import br.udesc.ceavi.estude.view.frame.FrameCRUD;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDAcao;
@@ -21,6 +22,7 @@ import br.udesc.ceavi.estude.view.frame.FrameCRUDDisciplina;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDNotificacao;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDPrivilegios;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDTarefas;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDTela;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
 import br.udesc.ceavi.estude.view.principal.FrameSistema;
 import java.awt.event.ActionEvent;
@@ -75,6 +77,8 @@ public class MenuActionListener implements ActionListener {
                 ListenersCRUDNotificacao listenerNotificacao = new ListenersCRUDNotificacao(new Notificacao(), frame);
             } else if (frame.getClass() == FrameCRUDPrivilegios.class) {
                 ListenersCRUDPrivilegios listenerPrivilegio= new ListenersCRUDPrivilegios(new Privilegio(), frame);
+            } else if (frame.getClass() == FrameCRUDTela.class) {
+                ListenersCRUDTela listenerTela= new ListenersCRUDTela(new Tela(), frame);
             } else {
             }
             {
