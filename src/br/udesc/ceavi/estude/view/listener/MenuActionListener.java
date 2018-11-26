@@ -8,11 +8,13 @@ package br.udesc.ceavi.estude.view.listener;
 import br.udesc.ceavi.estude.model.Acao;
 import br.udesc.ceavi.estude.model.Conteudo;
 import br.udesc.ceavi.estude.model.Disciplina;
+import br.udesc.ceavi.estude.model.Tarefa;
 import br.udesc.ceavi.estude.model.Usuario;
 import br.udesc.ceavi.estude.view.frame.FrameCRUD;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDAcao;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudo;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDDisciplina;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDTarefas;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
 import br.udesc.ceavi.estude.view.principal.FrameSistema;
 import java.awt.event.ActionEvent;
@@ -56,11 +58,13 @@ public class MenuActionListener implements ActionListener {
             if (frame.getClass() == FrameCRUDUsuario.class) {
                 ListenersCRUDUsuario listenerUsuario = new ListenersCRUDUsuario(new Usuario(), frame);
             } else if (frame.getClass() == FrameCRUDAcao.class) {
-                ListenersCRUDAcao listenerConteudo = new ListenersCRUDAcao(new Acao(), frame);
+                ListenersCRUDAcao listenerAcao = new ListenersCRUDAcao(new Acao(), frame);
             } else if (frame.getClass() == FrameCRUDConteudo.class) {
                 ListenersCRUDConteudo listenerConteudo = new ListenersCRUDConteudo(new Conteudo(), frame);
             } else if (frame.getClass() == FrameCRUDDisciplina.class) {
                 ListenersCRUDDisciplina listenerDisciplina = new ListenersCRUDDisciplina(new Disciplina(), frame);
+            } else if (frame.getClass() == FrameCRUDTarefas.class) {
+                ListenersCRUDTarefas listenerTarefas = new ListenersCRUDTarefas(new Tarefa(), frame);
             } else {
             }
             {
