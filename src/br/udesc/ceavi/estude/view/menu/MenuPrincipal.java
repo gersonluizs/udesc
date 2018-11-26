@@ -12,7 +12,9 @@ import br.udesc.ceavi.estude.view.frame.FrameCRUDAgenda;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudo;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDDisciplina;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDNotificacao;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDPrivilegios;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDTarefas;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDTela;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
 import br.udesc.ceavi.estude.view.listener.MenuActionListener;
 import br.udesc.ceavi.estude.view.principal.FrameSistema;
@@ -95,6 +97,8 @@ public class MenuPrincipal extends JMenuBar {
         menuItemCRUDTarefa.addActionListener(new MenuActionListener(frame, FrameCRUDTarefas.class));
         //menuItemCRUDAgenda.addActionListener(new MenuActionListener(frame, FrameCRUDAgenda.class));
         menuItemCRUDNotificao.addActionListener(new MenuActionListener(frame, FrameCRUDNotificacao.class));
+        menuItemCRUDPrivilegio.addActionListener(new MenuActionListener(frame, FrameCRUDPrivilegios.class));
+        menuItemCRUDTela.addActionListener(new MenuActionListener(frame, FrameCRUDTela.class));
     }
 
 }
