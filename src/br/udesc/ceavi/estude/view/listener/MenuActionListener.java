@@ -9,6 +9,7 @@ import br.udesc.ceavi.estude.model.Acao;
 import br.udesc.ceavi.estude.model.Agenda;
 import br.udesc.ceavi.estude.model.Conteudo;
 import br.udesc.ceavi.estude.model.Disciplina;
+import br.udesc.ceavi.estude.model.Notificacao;
 import br.udesc.ceavi.estude.model.Tarefa;
 import br.udesc.ceavi.estude.model.Usuario;
 import br.udesc.ceavi.estude.view.frame.FrameCRUD;
@@ -16,6 +17,7 @@ import br.udesc.ceavi.estude.view.frame.FrameCRUDAcao;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDAgenda;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudo;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDDisciplina;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDNotificacao;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDTarefas;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
 import br.udesc.ceavi.estude.view.principal.FrameSistema;
@@ -67,6 +69,8 @@ public class MenuActionListener implements ActionListener {
                 ListenersCRUDDisciplina listenerDisciplina = new ListenersCRUDDisciplina(new Disciplina(), frame);
             } else if (frame.getClass() == FrameCRUDTarefas.class) {
                 ListenersCRUDTarefas listenerTarefas = new ListenersCRUDTarefas(new Tarefa(), frame);
+            } else if (frame.getClass() == FrameCRUDNotificacao.class) {
+                ListenersCRUDNotificacao listenerNotificacao = new ListenersCRUDNotificacao(new Notificacao(), frame);
             } else {
             }
             {
