@@ -7,10 +7,8 @@ package br.udesc.ceavi.estude.view.listener;
 
 import br.udesc.ceavi.estude.control.dao.core.DAO;
 import br.udesc.ceavi.estude.control.dao.core.JPADAO;
-import br.udesc.ceavi.estude.model.Conteudo;
 import br.udesc.ceavi.estude.model.Notificacao;
 import br.udesc.ceavi.estude.view.frame.FrameCRUD;
-import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudo;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDNotificacao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
