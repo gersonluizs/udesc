@@ -71,6 +71,10 @@ public class Tarefa {
         super();
     }
 
+    public Tarefa(int i, String descricao) {
+        super();
+    }
+
     public int getCodigo() {
         return codigo;
     }
