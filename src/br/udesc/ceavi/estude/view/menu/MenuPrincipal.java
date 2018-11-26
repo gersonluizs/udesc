@@ -8,6 +8,7 @@ package br.udesc.ceavi.estude.view.menu;
 import br.udesc.ceavi.estude.model.Acao;
 import br.udesc.ceavi.estude.model.Usuario;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDAcao;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDAgenda;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudo;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDDisciplina;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDTarefas;
@@ -91,6 +92,7 @@ public class MenuPrincipal extends JMenuBar {
         menuItemCRUDConteudo.addActionListener(new MenuActionListener(frame, FrameCRUDConteudo.class));
         menuItemCRUDDisciplina.addActionListener(new MenuActionListener(frame, FrameCRUDDisciplina.class));
         menuItemCRUDTarefa.addActionListener(new MenuActionListener(frame, FrameCRUDTarefas.class));
+        //menuItemCRUDAgenda.addActionListener(new MenuActionListener(frame, FrameCRUDAgenda.class));
     }
 
 }
