@@ -62,6 +62,10 @@ public class Notificacao {
         this.visualizado = visualizado;
     }
 
+    public Notificacao(int i, String descricao) {
+     super();
+    }
+
     public int getCodigo() {
         return codigo;
     }
@@ -101,6 +105,15 @@ public class Notificacao {
     public void setVisualizado(boolean visualizado) {
         this.visualizado = visualizado;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
 
     @Override
     public String toString() {
