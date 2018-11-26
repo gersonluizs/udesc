@@ -129,7 +129,7 @@ public class ListenersCRUDConteudo {
                     //Apresenta o erro em uma mensagem para o usuário.
                     JOptionPane.showMessageDialog(tela, ex.getMessage());
 
-                    Logger.getLogger(ListenersCRUDAcao.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListenersCRUDConteudo.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 tela.limparCampos();
@@ -160,7 +160,7 @@ public class ListenersCRUDConteudo {
                 //Apresenta o erro em uma mensagem para o usuário.
                 JOptionPane.showMessageDialog(tela, ex.getMessage());
 
-                Logger.getLogger(ListenersCRUDAcao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ListenersCRUDConteudo.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             tela.limparCampos();
