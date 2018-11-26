@@ -95,7 +95,7 @@ public class MenuPrincipal extends JMenuBar {
         menuItemCRUDConteudo.addActionListener(new MenuActionListener(frame, FrameCRUDConteudo.class));
         menuItemCRUDDisciplina.addActionListener(new MenuActionListener(frame, FrameCRUDDisciplina.class));
         menuItemCRUDTarefa.addActionListener(new MenuActionListener(frame, FrameCRUDTarefas.class));
-        //menuItemCRUDAgenda.addActionListener(new MenuActionListener(frame, FrameCRUDAgenda.class));
+        menuItemCRUDAgenda.addActionListener(new MenuActionListener(frame, FrameCRUDAgenda.class));
         menuItemCRUDNotificao.addActionListener(new MenuActionListener(frame, FrameCRUDNotificacao.class));
         menuItemCRUDPrivilegio.addActionListener(new MenuActionListener(frame, FrameCRUDPrivilegios.class));
         menuItemCRUDTela.addActionListener(new MenuActionListener(frame, FrameCRUDTela.class));
