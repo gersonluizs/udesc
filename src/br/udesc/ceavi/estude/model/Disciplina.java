@@ -51,6 +51,10 @@ public class Disciplina {
         this.status = status;
     }
 
+    public Disciplina() {
+        super();
+    }
+
     public int getCodigo() {
         return codigo;
     }
