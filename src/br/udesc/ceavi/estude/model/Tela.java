@@ -10,38 +10,49 @@ import javax.persistence.Table;
 /**
  * Esta classe define as caracteristicas das telas do sistema
  *
- * @author Gerson, Lucas and Matheus 
+ * @author Gerson, Lucas and Matheus
  * @version 1.0
  * @since 19/08/2018
  */
-
 @Entity
 @Table(name = "tela")
 public class Tela {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "telcodigo")
     private int codigo;
-    
+
+    @Column(name = "telnome")
+    private String nome;
+
     @Column(name = "teldescricao")
     private String descricao;
-    
+
     public Tela(int codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
+        this.nome = nome;
     }
 
     public Tela() {
         super();
     }
-    
+
     public int getCodigo() {
         return codigo;
     }
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getDescricao() {
