@@ -1,4 +1,3 @@
-
 package br.udesc.ceavi.estude.model;
 
 import java.util.Objects;
@@ -15,49 +14,61 @@ import javax.persistence.Table;
 /**
  * Esta classe define os atributos e comportamentos de privilegios de usuarios
  *
- * @author Gerson, Lucas and Matheus 
+ * @author Gerson, Lucas and Matheus
  * @version 1.0
  * @since 19/08/2018
  */
 @Entity
 @Table(name = "privilegio")
 public class Privilegio {
-    
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pricodigo")
     private int codigo;
     
+    @Column(name = "nome")
+    private String nome;
+
     @OneToOne
     @JoinColumn(name = "acacodigo")
     private Acao acao;
-    
+
     @OneToOne
-    @JoinColumn(name ="telcodigo")
+    @JoinColumn(name = "telcodigo")
     private Tela tela;
-    
+
     @ManyToOne
     private Usuario usuario;
 
     public Privilegio() {
         super();
     }
-    
-    public Privilegio( int codigo, Acao acao, Tela tela) {
+
+    public Privilegio(int codigo,String nome, Acao acao, Tela tela) {
         this.codigo = codigo;
+        this.nome =nome;
         this.acao = acao;
         this.tela = tela;
     }
-    
-    public Privilegio( Acao acao, Tela tela) {
-        // this.codigo = codigo; // está implementação deverá pegar o maior código + 1
-        this.acao = acao;
-        this.tela = tela;
+
+    public Privilegio(int i, String descricao) {
+        super();
     }
 
     public Acao getAcao() {
         return acao;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    
 
     public void setAcao(Acao acao) {
         this.acao = acao;
@@ -71,14 +82,31 @@ public class Privilegio {
         this.tela = tela;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public String toString() {
         return "Privilegio{" + " codigo=" + codigo + " acao=" + acao + ", tela=" + tela + '}';
     }
 
     /**
-     * Equals implementado sem validar se o código é igual, assim será útil no 
+     * Equals implementado sem validar se o código é igual, assim será útil no
      * contains dos privilégios do usuário.
+     *
      * @param obj objeto a comparar para saber
      * @return
      */
