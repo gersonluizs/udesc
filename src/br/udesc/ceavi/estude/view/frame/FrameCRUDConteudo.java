@@ -56,18 +56,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
     private JTable tabela;
     private DefaultTableModel modelo;
 
-    public static void main(String[] args) {
-        JFrame fPrincipal = new JFrame();
-        fPrincipal.setVisible(true);
-
-        FrameCRUDConteudo fTeste;
-        Conteudo a = new Conteudo(0, "Descricao");
-
-        fTeste = new FrameCRUDConteudo(a);
-        fPrincipal.add(fTeste);
-
-        fTeste.setVisible(true);
-    }
     private Conteudo conteudo;
 
     public FrameCRUDConteudo(Conteudo conteudo) {
@@ -166,8 +154,8 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("" + conteudo.getCodigo());
         tfNome.setText(conteudo.getNome());
         tfDescricao.setText(conteudo.getDescricao());
-        tfDisciplina.setText(""+conteudo.getDisciplina());
-        tfPrioridade.setText(""+conteudo.getPrioridade());
+        //tfDisciplina.setText(""+conteudo.getDisciplina());
+        //tfPrioridade.setText(""+conteudo.getPrioridade());
         tfStatus.setText(""+conteudo.getStatus());
 
     }
