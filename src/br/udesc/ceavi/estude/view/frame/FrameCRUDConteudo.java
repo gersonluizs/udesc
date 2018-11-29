@@ -6,13 +6,20 @@
 package br.udesc.ceavi.estude.view.frame;
 
 import br.udesc.ceavi.estude.model.Conteudo;
+import br.udesc.ceavi.estude.model.Disciplina;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -34,7 +41,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
     private JLabel lbCodigo;
     private JLabel lbNome;
     private JLabel lbDescricao;
-    private JLabel lbDisciplina;
+    private JComboBox cbDisciplina;
     private JLabel lbStatus;
     private JLabel lbPrioridade;
 
@@ -72,6 +79,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
 
         initializeComponents();
         addComponents();
+        carregaComboBoxDisciplina();
     }
 
     public void setEndereco(Conteudo conteudos) {
@@ -125,14 +133,14 @@ public class FrameCRUDConteudo extends FrameCRUD {
         lbNome = new JLabel("Nome:");
         lbDescricao = new JLabel("Desc.:");
         lbCodigo = new JLabel("Cód.:");
-        lbDisciplina = new JLabel("Disc.:");
+
         lbStatus = new JLabel("Sta.:");
         lbPrioridade = new JLabel("Prio.:");
 
         tfNome = new JTextField();
         tfDescricao = new JTextField();
         tfCodigo = new JTextField();
-        tfDisciplina = new JTextField();
+        cbDisciplina = new JComboBox();
         tfPrioridade = new JTextField();
         tfStatus = new JTextField();
 
@@ -144,7 +152,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfDescricao.setEditable(b);
         tfNome.setEditable(b);
         tfCodigo.setEditable(b);
-        tfDisciplina.setEditable(b);
+
         tfPrioridade.setEditable(b);
         tfStatus.setEditable(b);
     }
@@ -154,9 +162,9 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("" + conteudo.getCodigo());
         tfNome.setText(conteudo.getNome());
         tfDescricao.setText(conteudo.getDescricao());
-        //tfDisciplina.setText(""+conteudo.getDisciplina());
-        //tfPrioridade.setText(""+conteudo.getPrioridade());
-        tfStatus.setText(""+conteudo.getStatus());
+
+        tfPrioridade.setText("" + conteudo.getPrioridade());
+        tfStatus.setText("" + conteudo.getStatus());
 
     }
 
@@ -216,20 +224,12 @@ public class FrameCRUDConteudo extends FrameCRUD {
          * ***
          */
         cons = new GridBagConstraints();
-        cons.gridx = 0;
-        cons.gridy = 3;
-        cons.gridwidth = 1;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbDisciplina, cons);
-
-        cons = new GridBagConstraints();
         cons.gridx = 1;
         cons.gridy = 3;
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfDisciplina, cons);
-
+        panelFormulario.add(cbDisciplina, cons);
         /**
          * ***
          */
@@ -281,7 +281,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("");
         tfNome.setText("");
         tfDescricao.setText("");
-        tfDisciplina.setText("");
         tfPrioridade.setText("");
         tfStatus.setText("");
 
@@ -334,5 +333,29 @@ public class FrameCRUDConteudo extends FrameCRUD {
 
     public void setTfStatus(JTextField tfStatus) {
         this.tfStatus = this.tfStatus;
+    }
+
+    private void carregaComboBoxDisciplina() {
+        try {
+            Connection db = DriverManager.getConnection("");
+            Statement st = db.createStatement();
+            ResultSet rs = st.executeQuery("");
+            while (rs.next()) {
+                Disciplina disciplina = new Disciplina();
+                disciplina.setCodigo(rs.getInt("id_disciplina"));
+                disciplina.setNome(rs.getString("nome"));
+                disciplina.setDescricao(rs.getString("descricao"));
+                disciplina.setCargaHoraria(rs.getString("cargaHoras"));
+
+                cbDisciplina.addItem(disciplina);
+            }
+            rs.close();
+            db.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocorreu erro ao carregar a Combo Box", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 }
