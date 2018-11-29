@@ -54,19 +54,6 @@ public class FrameCRUDPrivilegios extends FrameCRUD {
     private JTable tabela;
     private DefaultTableModel modelo;
 
-    public static void main(String[] args) {
-        JFrame fPrincipal = new JFrame();
-        fPrincipal.setVisible(true);
-
-        FrameCRUDPrivilegios fTeste;
-        Privilegio a = new Privilegio(0, "Descricao");
-
-        fTeste = new FrameCRUDPrivilegios(a);
-        fPrincipal.add(fTeste);
-
-        fTeste.setVisible(true);
-    }
-
     public FrameCRUDPrivilegios(Privilegio privilegio) {
         super(titulo, dimension);
 
@@ -289,8 +276,6 @@ public class FrameCRUDPrivilegios extends FrameCRUD {
     public void setTfNome(JTextField tfNome) {
         this.tfNome = tfNome;
     }
-    
-    
 
     public JTextField getTfAcao() {
         return tfAcao;
