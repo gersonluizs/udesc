@@ -10,7 +10,6 @@ import br.udesc.ceavi.estude.model.Tela;
 import br.udesc.ceavi.estude.model.Usuario;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDAcao;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDAgenda;
-import br.udesc.ceavi.estude.view.frame.FrameCRUDAjuda;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudo;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDDisciplina;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDNotificacao;
