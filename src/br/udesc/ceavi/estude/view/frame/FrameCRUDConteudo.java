@@ -7,6 +7,7 @@ package br.udesc.ceavi.estude.view.frame;
 
 import br.udesc.ceavi.estude.model.Conteudo;
 import br.udesc.ceavi.estude.model.Disciplina;
+import br.udesc.ceavi.estude.model.Prioridade;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -42,16 +43,15 @@ public class FrameCRUDConteudo extends FrameCRUD {
     private JLabel lbNome;
     private JLabel lbDescricao;
     private JLabel lbDisciplina;
-    private JComboBox cbDisciplina;
     private JLabel lbStatus;
     private JLabel lbPrioridade;
 
     JTextField tfCodigo;
     JTextField tfNome;
     JTextField tfDescricao;
-    JTextField tfDisciplina;
+    private JComboBox cbDisciplina;
     JTextField tfStatus;
-    JTextField tfPrioridade;
+    private JComboBox cbPrioridade;
 
     private JPanel panelFormulario;
     private LayoutManager layoutFormulario;
@@ -134,8 +134,10 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfDescricao = new JTextField();
         tfCodigo = new JTextField();
         cbDisciplina = new JComboBox();
-        tfPrioridade = new JTextField();
         tfStatus = new JTextField();
+        cbPrioridade = new JComboBox(Prioridade.values());
+
+        cbPrioridade.setSelectedIndex(-1);
 
         limparCampos();
     }
@@ -145,7 +147,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfDescricao.setEditable(b);
         tfNome.setEditable(b);
         tfCodigo.setEditable(b);
-        tfPrioridade.setEditable(b);
         tfStatus.setEditable(b);
     }
 
@@ -154,7 +155,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("" + conteudo.getCodigo());
         tfNome.setText(conteudo.getNome());
         tfDescricao.setText(conteudo.getDescricao());
-        tfPrioridade.setText("" + conteudo.getPrioridade());
         tfStatus.setText("" + conteudo.getStatus());
 
     }
@@ -219,7 +219,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.gridy = 3;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbPrioridade, cons);
+        panelFormulario.add(lbStatus, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 1;
@@ -227,7 +227,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfPrioridade, cons);
+        panelFormulario.add(tfStatus, cons);
 
         /**
          * ***
@@ -237,7 +237,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.gridy = 4;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbStatus, cons);
+        panelFormulario.add(lbPrioridade, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 1;
@@ -245,7 +245,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfStatus, cons);
+        panelFormulario.add(cbPrioridade, cons);
 
         /**
          * ***
@@ -264,6 +264,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
         panelFormulario.add(cbDisciplina, cons);
+
         panelContainer.add(panelFormulario);
 
         /*panelContainer.add(barraRolagem);
@@ -276,7 +277,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("");
         tfNome.setText("");
         tfDescricao.setText("");
-        tfPrioridade.setText("");
         tfStatus.setText("");
 
         super.repaint();
@@ -304,22 +304,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
 
     public void setTfDescricao(JTextField tfDescricao) {
         this.tfDescricao = tfDescricao;
-    }
-
-    public JTextField getTfDisciplina() {
-        return tfDisciplina;
-    }
-
-    public void setTfDisciplina(JTextField tfDisciplina) {
-        this.tfDisciplina = this.tfDisciplina;
-    }
-
-    public JTextField getTfPrioridade() {
-        return tfPrioridade;
-    }
-
-    public void setTfPrioridade(JTextField tfPrioridade) {
-        this.tfPrioridade = this.tfPrioridade;
     }
 
     public JTextField getTfStatus() {
