@@ -41,6 +41,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
     private JLabel lbCodigo;
     private JLabel lbNome;
     private JLabel lbDescricao;
+    private JLabel lbDisciplina;
     private JComboBox cbDisciplina;
     private JLabel lbStatus;
     private JLabel lbPrioridade;
@@ -64,15 +65,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
     private DefaultTableModel modelo;
 
     private Conteudo conteudo;
-
-    public FrameCRUDConteudo(Conteudo conteudo) {
-        super(titulo, dimension);
-
-        this.conteudo = conteudo;
-
-        initializeComponents();
-        addComponents();
-    }
 
     public FrameCRUDConteudo() {
         super(titulo, dimension);
@@ -106,6 +98,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         modelo.addColumn("Cod.");
         modelo.addColumn("Nome");
         modelo.addColumn("Des.");
+        modelo.addColumn("Disc.");
         modelo.addColumn("Prio.");
         modelo.addColumn("Sta.");
         modelo.addColumn("Disc");
@@ -133,7 +126,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         lbNome = new JLabel("Nome:");
         lbDescricao = new JLabel("Desc.:");
         lbCodigo = new JLabel("Cód.:");
-
+        lbDisciplina = new JLabel("Disc.:");
         lbStatus = new JLabel("Sta.:");
         lbPrioridade = new JLabel("Prio.:");
 
@@ -152,7 +145,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfDescricao.setEditable(b);
         tfNome.setEditable(b);
         tfCodigo.setEditable(b);
-
         tfPrioridade.setEditable(b);
         tfStatus.setEditable(b);
     }
@@ -162,7 +154,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("" + conteudo.getCodigo());
         tfNome.setText(conteudo.getNome());
         tfDescricao.setText(conteudo.getDescricao());
-
         tfPrioridade.setText("" + conteudo.getPrioridade());
         tfStatus.setText("" + conteudo.getStatus());
 
@@ -224,25 +215,15 @@ public class FrameCRUDConteudo extends FrameCRUD {
          * ***
          */
         cons = new GridBagConstraints();
-        cons.gridx = 1;
-        cons.gridy = 3;
-        cons.gridwidth = 3;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        cons.ipadx = 100;
-        panelFormulario.add(cbDisciplina, cons);
-        /**
-         * ***
-         */
-        cons = new GridBagConstraints();
         cons.gridx = 0;
-        cons.gridy = 4;
+        cons.gridy = 3;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(lbPrioridade, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 1;
-        cons.gridy = 4;
+        cons.gridy = 3;
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
@@ -253,14 +234,14 @@ public class FrameCRUDConteudo extends FrameCRUD {
          */
         cons = new GridBagConstraints();
         cons.gridx = 0;
-        cons.gridy = 5;
+        cons.gridy = 4;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(lbStatus, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 1;
-        cons.gridy = 5;
+        cons.gridy = 4;
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
@@ -269,6 +250,20 @@ public class FrameCRUDConteudo extends FrameCRUD {
         /**
          * ***
          */
+        cons = new GridBagConstraints();
+        cons.gridx = 0;
+        cons.gridy = 5;
+        cons.gridwidth = 1;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        panelFormulario.add(lbDisciplina, cons);
+
+        cons = new GridBagConstraints();
+        cons.gridx = 1;
+        cons.gridy = 5;
+        cons.gridwidth = 3;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        cons.ipadx = 100;
+        panelFormulario.add(cbDisciplina, cons);
         panelContainer.add(panelFormulario);
 
         /*panelContainer.add(barraRolagem);
