@@ -56,19 +56,6 @@ public class FrameCRUDDisciplina extends FrameCRUD {
     private JTable tabela;
     private DefaultTableModel modelo;
 
-    public static void main(String[] args) {
-        JFrame fPrincipal = new JFrame();
-        fPrincipal.setVisible(true);
-
-        FrameCRUDConteudo fTeste;
-        Conteudo a = new Conteudo(0, "Descricao");
-
-        fTeste = new FrameCRUDConteudo(a);
-        fPrincipal.add(fTeste);
-
-        fTeste.setVisible(true);
-    }
-
     public FrameCRUDDisciplina(Disciplina disciplina) {
         super(titulo, dimension);
 

@@ -148,12 +148,18 @@ public class ListenersCRUDUsuario {
             //chama a classe controller que faz a inserção do objeto
             DAO dao = (DAO) new JPADAO();
 
-            usuario.setNome(tela.getTfNome().getText());
-            usuario.setEmail(tela.getTfEmail().getText());
-            usuario.setSenha(tela.getTfSenha().getText());
+            usuario.setNome( tela.getTfNome().getText() );
+            usuario.setEmail( tela.getTfEmail().getText() );
+            usuario.setSenha( tela.getTfSenha().getText() );
             
             try {
-                dao.inserir(usuario);
+                
+                if( tela.getTfCodigo().getText().equals("") || tela.getTfCodigo().getText().equals(null) ){
+                    dao.inserir(usuario);
+                } else{
+                    usuario.setCodigo( Integer.parseInt(tela.getTfCodigo().getText()) );
+                    dao.atualizar(usuario);
+                }   
                 
             } catch (Exception ex) {
                 //Apresenta o erro em uma mensagem para o usuário.
