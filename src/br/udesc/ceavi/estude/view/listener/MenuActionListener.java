@@ -45,7 +45,7 @@ public class MenuActionListener implements ActionListener {
     private FrameCRUD frame;
 
     //Parent (tela da aplicação principal) onde as JInternalFrame deverão ser exibidas
-    private final FrameSistema tela;
+    final FrameSistema tela;
 
     public MenuActionListener(FrameSistema tela, Class<? extends FrameCRUD> classe) {
         this.tela = tela;
@@ -76,11 +76,11 @@ public class MenuActionListener implements ActionListener {
             } else if (frame.getClass() == FrameCRUDNotificacao.class) {
                 ListenersCRUDNotificacao listenerNotificacao = new ListenersCRUDNotificacao(new Notificacao(), frame);
             } else if (frame.getClass() == FrameCRUDPrivilegios.class) {
-                ListenersCRUDPrivilegios listenerPrivilegio= new ListenersCRUDPrivilegios(new Privilegio(), frame);
+                ListenersCRUDPrivilegios listenerPrivilegio = new ListenersCRUDPrivilegios(new Privilegio(), frame);
             } else if (frame.getClass() == FrameCRUDTela.class) {
-                ListenersCRUDTela listenerTela= new ListenersCRUDTela(new Tela(), frame);
+                ListenersCRUDTela listenerTela = new ListenersCRUDTela(new Tela(), frame);
             } else if (frame.getClass() == FrameCRUDAgenda.class) {
-                ListenersCRUDAgenda listenerAgenda= new ListenersCRUDAgenda(new Agenda(), frame);
+                ListenersCRUDAgenda listenerAgenda = new ListenersCRUDAgenda(new Agenda(), frame);
             } else {
             }
             {
