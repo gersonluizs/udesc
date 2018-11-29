@@ -29,6 +29,7 @@ public class Conteudo {
         this.descricao = descricao;
         this.prioridade = prioridade;
         this.status = status;
+        this.disciplina = disciplina;
     }
 
     @Id
@@ -114,6 +115,14 @@ public class Conteudo {
 
     public void setTarefas(List<Tarefa> tarefas) {
         this.tarefas = tarefas;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
 
     @Override
