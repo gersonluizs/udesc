@@ -10,6 +10,7 @@ import br.udesc.ceavi.estude.model.Tela;
 import br.udesc.ceavi.estude.model.Usuario;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDAcao;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDAgenda;
+import br.udesc.ceavi.estude.view.frame.FrameCRUDAjuda;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudo;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDDisciplina;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDNotificacao;
@@ -19,6 +20,7 @@ import br.udesc.ceavi.estude.view.frame.FrameCRUDTela;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
 import br.udesc.ceavi.estude.view.listener.MenuActionListener;
 import br.udesc.ceavi.estude.view.principal.FrameSistema;
+import java.awt.PopupMenu;
 import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -102,7 +104,6 @@ public class MenuPrincipal extends JMenuBar {
         menuItemCRUDNotificao.addActionListener(new MenuActionListener(frame, FrameCRUDNotificacao.class));
         menuItemCRUDPrivilegio.addActionListener(new MenuActionListener(frame, FrameCRUDPrivilegios.class));
         menuItemCRUDTela.addActionListener(new MenuActionListener(frame, FrameCRUDTela.class));
-       
 
     }
 
