@@ -63,18 +63,6 @@ public class FrameCRUDTarefas extends FrameCRUD {
     private JTable tabela;
     private DefaultTableModel modelo;
 
-    public static void main(String[] args) {
-        JFrame fPrincipal = new JFrame();
-        fPrincipal.setVisible(true);
-
-        FrameCRUDTarefas fTeste;
-        Tarefa a = new Tarefa(0, "Descricao");
-
-        fTeste = new FrameCRUDTarefas(a);
-        fPrincipal.add(fTeste);
-
-        fTeste.setVisible(true);
-    }
     private Tarefa tarefa;
 
     public FrameCRUDTarefas(String titulo, Dimension dimension) throws HeadlessException {
@@ -267,7 +255,7 @@ public class FrameCRUDTarefas extends FrameCRUD {
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
         panelFormulario.add(tfDataHoraInicio, cons);
-        
+
         /**
          * ***
          */
