@@ -19,7 +19,6 @@ import br.udesc.ceavi.estude.view.frame.FrameCRUDTela;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDUsuario;
 import br.udesc.ceavi.estude.view.listener.MenuActionListener;
 import br.udesc.ceavi.estude.view.principal.FrameSistema;
-import java.awt.PopupMenu;
 import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
