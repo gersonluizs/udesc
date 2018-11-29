@@ -27,13 +27,13 @@ public class Disciplina {
     @Column(name = "id_disciplina")
     private int codigo;
     
-    @Column
+    @Column(name = "nome")
     private String nome;
     
-    @Column
+    @Column(name = "descricao")
     private String descricao;
     
-    @Column
+    @Column(name = "cargaHoras")
     private String cargaHoraria;
     
     @OneToMany (mappedBy = "disciplina")
