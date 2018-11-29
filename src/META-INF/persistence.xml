@@ -3,8 +3,16 @@
   <persistence-unit name="ProjetoPratico" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.udesc.ceavi.estude.model.Acao</class>
+    <class>br.udesc.ceavi.estude.model.Agenda</class>
+    <class>br.udesc.ceavi.estude.model.Conteudo</class>
+    <class>br.udesc.ceavi.estude.model.Disciplina</class>
+    <class>br.udesc.ceavi.estude.model.Notificacao</class>
+    <class>br.udesc.ceavi.estude.model.Privilegio</class>
+    <class>br.udesc.ceavi.estude.model.Tarefa</class>
+    <class>br.udesc.ceavi.estude.model.Tela</class>
+    <class>br.udesc.ceavi.estude.model.Usuario</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:2199/estude"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:2199/Projeto"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="maas030200"/>
