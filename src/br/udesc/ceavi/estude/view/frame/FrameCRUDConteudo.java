@@ -8,6 +8,8 @@ package br.udesc.ceavi.estude.view.frame;
 import br.udesc.ceavi.estude.model.Conteudo;
 import br.udesc.ceavi.estude.model.Disciplina;
 import br.udesc.ceavi.estude.model.Prioridade;
+import br.udesc.ceavi.estude.model.Status;
+import com.sun.xml.internal.ws.api.message.Packet;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -50,7 +52,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
     JTextField tfNome;
     JTextField tfDescricao;
     private JComboBox cbDisciplina;
-    JTextField tfStatus;
+    private JComboBox cbStatus;
     private JComboBox cbPrioridade;
 
     private JPanel panelFormulario;
@@ -134,9 +136,9 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfDescricao = new JTextField();
         tfCodigo = new JTextField();
         cbDisciplina = new JComboBox();
-        tfStatus = new JTextField();
+        cbStatus = new JComboBox(Status.values());
+        cbStatus.setSelectedIndex(-1);
         cbPrioridade = new JComboBox(Prioridade.values());
-
         cbPrioridade.setSelectedIndex(-1);
 
         limparCampos();
@@ -147,7 +149,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfDescricao.setEditable(b);
         tfNome.setEditable(b);
         tfCodigo.setEditable(b);
-        tfStatus.setEditable(b);
     }
 
     @Override
@@ -155,7 +156,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("" + conteudo.getCodigo());
         tfNome.setText(conteudo.getNome());
         tfDescricao.setText(conteudo.getDescricao());
-        tfStatus.setText("" + conteudo.getStatus());
 
     }
 
@@ -227,7 +227,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfStatus, cons);
+        panelFormulario.add(cbStatus, cons);
 
         /**
          * ***
@@ -277,7 +277,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("");
         tfNome.setText("");
         tfDescricao.setText("");
-        tfStatus.setText("");
 
         super.repaint();
     }
@@ -304,14 +303,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
 
     public void setTfDescricao(JTextField tfDescricao) {
         this.tfDescricao = tfDescricao;
-    }
-
-    public JTextField getTfStatus() {
-        return tfStatus;
-    }
-
-    public void setTfStatus(JTextField tfStatus) {
-        this.tfStatus = this.tfStatus;
     }
 
     private void carregaComboBoxDisciplina() {
