@@ -7,11 +7,15 @@ package br.udesc.ceavi.estude.view.frame;
 
 import br.udesc.ceavi.estude.model.Conteudo;
 import br.udesc.ceavi.estude.model.Disciplina;
+import br.udesc.ceavi.estude.model.Status;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
+import javax.net.ssl.SSLEngineResult;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -40,7 +44,7 @@ public class FrameCRUDDisciplina extends FrameCRUD {
     JTextField tfCodigo;
     JTextField tfNome;
     JTextField tfDescricao;
-    JTextField tfStatus;
+    private JComboBox cbStatus;
     JTextField tfCargaHoraria;
 
     private JPanel panelFormulario;
@@ -126,8 +130,10 @@ public class FrameCRUDDisciplina extends FrameCRUD {
         tfNome = new JTextField();
         tfDescricao = new JTextField();
         tfCodigo = new JTextField();
-        tfStatus = new JTextField();
         tfCargaHoraria = new JTextField();
+        cbStatus = new JComboBox(Status.values());
+
+        cbStatus.setSelectedIndex(-1);
 
         limparCampos();
     }
@@ -138,7 +144,6 @@ public class FrameCRUDDisciplina extends FrameCRUD {
         tfNome.setEditable(b);
         tfCodigo.setEditable(b);
         tfCargaHoraria.setEditable(b);
-        tfStatus.setEditable(b);
     }
 
     @Override
@@ -147,7 +152,6 @@ public class FrameCRUDDisciplina extends FrameCRUD {
         tfNome.setText(disciplina.getNome());
         tfDescricao.setText(disciplina.getDescricao());
         tfCargaHoraria.setText(disciplina.getCargaHoraria());
-        tfStatus.setText("" + disciplina.getStatus());
 
     }
 
@@ -219,7 +223,7 @@ public class FrameCRUDDisciplina extends FrameCRUD {
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfStatus, cons);
+        panelFormulario.add(cbStatus, cons);
 
         /**
          * ***
@@ -255,8 +259,6 @@ public class FrameCRUDDisciplina extends FrameCRUD {
         tfNome.setText("");
         tfDescricao.setText("");
 
-        tfStatus.setText("");
-
         super.repaint();
     }
 
@@ -284,11 +286,4 @@ public class FrameCRUDDisciplina extends FrameCRUD {
         this.tfDescricao = tfDescricao;
     }
 
-    public JTextField getTfStatus() {
-        return tfStatus;
-    }
-
-    public void setTfStatus(JTextField tfStatus) {
-        this.tfStatus = this.tfStatus;
-    }
 }
