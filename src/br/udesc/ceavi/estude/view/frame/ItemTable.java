@@ -6,7 +6,6 @@
 package br.udesc.ceavi.estude.view.frame;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.MenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
