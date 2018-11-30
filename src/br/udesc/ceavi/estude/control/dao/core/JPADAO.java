@@ -17,7 +17,7 @@ import javax.persistence.EntityManagerFactory;
 public class JPADAO<X> implements DAO {
 
     private static EntityManagerFactory emf;
-    private static EntityManager em;
+    static EntityManager em;
 
     public JPADAO() {
         super();
