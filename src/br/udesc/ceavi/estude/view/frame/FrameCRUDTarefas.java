@@ -6,12 +6,14 @@
 package br.udesc.ceavi.estude.view.frame;
 
 import br.udesc.ceavi.estude.model.Tarefa;
+import br.udesc.ceavi.estude.model.tipoTarefa;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
 import java.awt.LayoutManager;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -48,7 +50,7 @@ public class FrameCRUDTarefas extends FrameCRUD {
     JTextField tfDataHoraInicio;
     JTextField tfDataHoraFim;
     JTextField tfNotificacoes;
-    JTextField tfTipoTarefa;
+    private JComboBox cbTipoTarefa;
     JTextField tfStatus;
     JTextField tfConteudo;
 
@@ -153,8 +155,9 @@ public class FrameCRUDTarefas extends FrameCRUD {
         tfDataHoraFim = new JTextField();
         tfStatus = new JTextField();
         tfDataHoraInicio = new JTextField();
-        tfTipoTarefa = new JTextField();
         tfNotificacoes = new JTextField();
+        cbTipoTarefa = new JComboBox(tipoTarefa.values());
+        cbTipoTarefa.setSelectedIndex(-1);
 
         limparCampos();
     }
@@ -168,7 +171,6 @@ public class FrameCRUDTarefas extends FrameCRUD {
         tfDataHoraFim.setEditable(b);
         tfStatus.setEditable(b);
         tfDataHoraInicio.setEditable(b);
-        tfTipoTarefa.setEditable(b);
         tfNotificacoes.setEditable(b);
     }
 
@@ -182,7 +184,6 @@ public class FrameCRUDTarefas extends FrameCRUD {
         tfStatus.setText("" + tarefa.getStatus());
         tfDataHoraInicio.setText("" + tarefa.getDataHoraInicio());
         tfNotificacoes.setText("" + tarefa.getNotificacoes());
-        tfTipoTarefa.setText("" + tarefa.getTipotarefa());
 
     }
 
@@ -290,7 +291,7 @@ public class FrameCRUDTarefas extends FrameCRUD {
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfTipoTarefa, cons);
+        panelFormulario.add(cbTipoTarefa, cons);
 
         /**
          * ***
@@ -365,7 +366,6 @@ public class FrameCRUDTarefas extends FrameCRUD {
         tfDataHoraInicio.setText("");
         tfStatus.setText("");
         tfDataHoraFim.setText("");
-        tfTipoTarefa.setText("");
         tfNotificacoes.setText("");
 
         super.repaint();
@@ -417,14 +417,6 @@ public class FrameCRUDTarefas extends FrameCRUD {
 
     public void setTfNotificacoes(JTextField tfNotificacoes) {
         this.tfNotificacoes = tfNotificacoes;
-    }
-
-    public JTextField getTfTipoTarefa() {
-        return tfTipoTarefa;
-    }
-
-    public void setTfTipoTarefa(JTextField tfTipoTarefa) {
-        this.tfTipoTarefa = tfTipoTarefa;
     }
 
     public JTextField getTfConteudo() {

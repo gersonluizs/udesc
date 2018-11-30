@@ -6,13 +6,19 @@
 package br.udesc.ceavi.estude.view.frame;
 
 import br.udesc.ceavi.estude.model.Privilegio;
+import br.udesc.ceavi.estude.model.Usuario;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
-import javax.swing.JFrame;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -41,7 +47,7 @@ public class FrameCRUDPrivilegios extends FrameCRUD {
     JTextField tfNome;
     JTextField tfAcao;
     JTextField tfTela;
-    JTextField tfUsuario;
+    private JComboBox cbUsuario;
 
     private JPanel panelFormulario;
     private LayoutManager layoutFormulario;
@@ -54,20 +60,12 @@ public class FrameCRUDPrivilegios extends FrameCRUD {
     private JTable tabela;
     private DefaultTableModel modelo;
 
-    public FrameCRUDPrivilegios(Privilegio privilegio) {
-        super(titulo, dimension);
-
-        this.privilegio = privilegio;
-
-        initializeComponents();
-        addComponents();
-    }
-
     public FrameCRUDPrivilegios() {
         super(titulo, dimension);
 
         initializeComponents();
         addComponents();
+        carregaComboBoxUsuario();
     }
 
     public void setEndereco(Privilegio privilegio) {
@@ -127,7 +125,7 @@ public class FrameCRUDPrivilegios extends FrameCRUD {
         tfNome = new JTextField();
         tfAcao = new JTextField();
         tfTela = new JTextField();
-        tfUsuario = new JTextField();
+        cbUsuario = new JComboBox();
 
         limparCampos();
     }
@@ -138,7 +136,6 @@ public class FrameCRUDPrivilegios extends FrameCRUD {
         tfNome.setEditable(b);
         tfTela.setEditable(b);
         tfCodigo.setEditable(b);
-        tfUsuario.setEditable(b);
 
     }
 
@@ -148,7 +145,6 @@ public class FrameCRUDPrivilegios extends FrameCRUD {
         tfNome.setText("" + privilegio.getNome());
         tfAcao.setText("" + privilegio.getAcao());
         tfTela.setText("" + privilegio.getTela());
-        tfUsuario.setText("" + privilegio.getUsuario());
 
     }
 
@@ -238,7 +234,7 @@ public class FrameCRUDPrivilegios extends FrameCRUD {
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfUsuario, cons);
+        panelFormulario.add(cbUsuario, cons);
 
         /**
          * ***
@@ -256,7 +252,6 @@ public class FrameCRUDPrivilegios extends FrameCRUD {
         tfNome.setText("");
         tfAcao.setText("");
         tfTela.setText("");
-        tfUsuario.setText("");
 
         super.repaint();
     }
@@ -293,12 +288,29 @@ public class FrameCRUDPrivilegios extends FrameCRUD {
         this.tfTela = tfTela;
     }
 
-    public JTextField getTfUsuario() {
-        return tfUsuario;
-    }
+    private void carregaComboBoxUsuario() {
 
-    public void setTfUsuario(JTextField tfUsuario) {
-        this.tfUsuario = tfUsuario;
+        try {
+            Connection db = DriverManager.getConnection("");
+            Statement st = db.createStatement();
+            ResultSet rs = st.executeQuery("");
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setCodigo(rs.getInt("usucodigo"));
+                usuario.setNome(rs.getString("usunome"));
+                usuario.setEmail(rs.getString("usuemail"));
+                usuario.setSenha(rs.getString("ususenha"));
+
+                cbUsuario.addItem(usuario);
+            }
+            rs.close();
+            db.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocorreu erro ao carregar a Combo Box", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
 }
