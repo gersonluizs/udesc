@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Esta classe define os atributos e comportamentos das tarefas do usuario
@@ -36,9 +38,11 @@ public class Tarefa {
     @Column(name = "tardescricao")
     private String descricao;
     
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tardatahorainicio")
     private Date dataHoraInicio;
     
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tardatahorafim")
     private Date dataHoraFim;
     
