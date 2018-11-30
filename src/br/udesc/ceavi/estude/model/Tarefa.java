@@ -38,13 +38,11 @@ public class Tarefa {
     @Column(name = "tardescricao")
     private String descricao;
     
-    @Column(name = "tardatahorainicio", insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataHoraInicio;
+    @Column(name = "tardatahorainicio")
+    private String dataHoraInicio;
    
-    @Column(name = "tardatahorafim", insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataHoraFim;
+    @Column(name = "tardatahorafim")
+    private String dataHoraFim;
     
     @OneToMany (mappedBy = "tarefa")
     private List<Notificacao> notificacoes;
@@ -59,7 +57,7 @@ public class Tarefa {
     @JoinColumn(name = "concodigo")
     private Conteudo conteudo;
 
-    public Tarefa(int codigo, String nome, String descricao, Date dataHoraInicio, Date dataHoraFim, List<Notificacao> notificacoes, tipoTarefa tipotarefa, Status status, Conteudo conteudo) {
+    public Tarefa(int codigo, String nome, String descricao, String dataHoraInicio, String dataHoraFim, List<Notificacao> notificacoes, tipoTarefa tipotarefa, Status status, Conteudo conteudo) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
@@ -103,19 +101,19 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public Date getDataHoraInicio() {
+    public String getDataHoraInicio() {
         return dataHoraInicio;
     }
 
-    public void setDataHoraInicio(Date dataHoraInicio) {
+    public void setDataHoraInicio(String dataHoraInicio) {
         this.dataHoraInicio = dataHoraInicio;
     }
 
-    public Date getDataHoraFim() {
+    public String getDataHoraFim() {
         return dataHoraFim;
     }
 
-    public void setDataHoraFim(Date dataHoraFim) {
+    public void setDataHoraFim(String dataHoraFim) {
         this.dataHoraFim = dataHoraFim;
     }
 

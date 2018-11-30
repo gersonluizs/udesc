@@ -120,8 +120,8 @@ public class Agenda {
         this.tarefa = tarefa;
     }
 
-    public void addTarefa(int codigo, String nome, String descricao, Date dataHoraInicio,
-            Date dataHoraFim) {
+    public void addTarefa(int codigo, String nome, String descricao, String dataHoraInicio,
+            String dataHoraFim) {
 
         tarefa = new Tarefa();
         tarefa.setCodigo(codigo);
