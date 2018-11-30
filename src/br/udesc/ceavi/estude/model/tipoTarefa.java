@@ -30,6 +30,6 @@ public enum tipoTarefa {
 
     @Override
     public String toString() {
-        return "tipoTarefa{" + "tipo=" + tipo + '}';
+        return tipo;
     }
 }

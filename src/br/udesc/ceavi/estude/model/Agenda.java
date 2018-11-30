@@ -43,7 +43,7 @@ public class Agenda {
     private String tempoOcupado;
 
     @OneToOne
-    @Column(name = "tarcodigo")
+    @JoinColumn(name = "tarcodigo")
     private Tarefa tarefa;
 
     public Agenda(int codigo, String nome, String descricao, String horarioDedicado, String tempoDisponivel, String tempoOcupado, Tarefa tarefa) {
