@@ -40,9 +40,8 @@ public class Notificacao {
     @Column(name = "notdescricao")
     private String descricao;
     
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "notdatahora")
-    private Date dataHora;
+    private String dataHora;
     
     @Column(name = "notvisualizado")
     private boolean visualizado;
@@ -54,7 +53,7 @@ public class Notificacao {
         super();
     }
     
-    public Notificacao(int codigo, String assunto, String descricao, Date dataHora, boolean visualizado) {
+    public Notificacao(int codigo, String assunto, String descricao, String dataHora, boolean visualizado) {
         this.codigo = codigo;
         this.assunto = assunto;
         this.descricao = descricao;
@@ -90,11 +89,11 @@ public class Notificacao {
         this.descricao = descricao;
     }
 
-    public Date getDataHora() {
+    public String getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(Date dataHora) {
+    public void setDataHora(String dataHora) {
         this.dataHora = dataHora;
     }
 
