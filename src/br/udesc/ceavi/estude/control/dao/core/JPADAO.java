@@ -8,7 +8,7 @@ package br.udesc.ceavi.estude.control.dao.core;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.metamodel.EntityType;
+
 
 /**
  *
