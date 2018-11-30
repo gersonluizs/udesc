@@ -38,12 +38,12 @@ public class Tarefa {
     @Column(name = "tardescricao")
     private String descricao;
     
+    @Column(name = "tardatahorainicio", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tardatahorainicio")
     private Date dataHoraInicio;
-    
+   
+    @Column(name = "tardatahorafim", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "tardatahorafim")
     private Date dataHoraFim;
     
     @OneToMany (mappedBy = "tarefa")
