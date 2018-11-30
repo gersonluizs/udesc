@@ -12,6 +12,10 @@ import br.udesc.ceavi.estude.view.frame.FrameCRUD;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -164,6 +168,17 @@ public class ListenersCRUDConteudo {
             }
 
             tela.limparCampos();
+        }
+    }
+
+    public void AttBancoConteudo() {
+        try {
+            Connection db = DriverManager.getConnection("");
+            Statement st = db.createStatement();
+            ResultSet rs = st.executeQuery("");
+            rs.close();
+            db.close();
+        } catch (Exception e) {
         }
     }
 }
