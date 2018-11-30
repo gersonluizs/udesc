@@ -83,11 +83,11 @@ public class FrameCRUDAcao extends FrameCRUD {
 
         modelo.setNumRows(0);
 
-        /* 
+      /*   
         try {
-            usuarios = dao.getAllRegistros(Usuario.class);
+            acao = DAO.getAllRegistros(Acao.class);
         } catch (Exception ex) {
-            Logger.getLogger(FrameCRUDUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrameCRUDAcao.class.getName()).log(Level.SEVERE, null, ex);
         }
         
          */
