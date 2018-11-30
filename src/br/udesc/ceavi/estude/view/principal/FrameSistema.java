@@ -12,9 +12,9 @@ import javax.swing.JMenuBar;
 /**
  * Esta é a tela principal da aplicação
  *
- * @author Márcio José Mantau
+ * @author Gerson, Lucas e Matheus
  * @version 1.0
- * @since 26/03/2018
+ *
  */
 public class FrameSistema extends JFrame {
 
