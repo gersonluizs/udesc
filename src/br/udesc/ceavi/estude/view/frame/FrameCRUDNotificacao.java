@@ -5,16 +5,20 @@
  */
 package br.udesc.ceavi.estude.view.frame;
 
-import br.udesc.ceavi.estude.model.Conteudo;
 import br.udesc.ceavi.estude.model.Notificacao;
+import br.udesc.ceavi.estude.model.Usuario;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.HeadlessException;
 import java.awt.LayoutManager;
-import javax.swing.JFrame;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -45,7 +49,7 @@ public class FrameCRUDNotificacao extends FrameCRUD {
     JTextField tfDescricao;
     JTextField tfDataHora;
     JTextField tfVisualizado;
-    JTextField tfUsuario;
+    private JComboBox cbUsuario;
 
     private JPanel panelFormulario;
     private LayoutManager layoutFormulario;
@@ -58,33 +62,12 @@ public class FrameCRUDNotificacao extends FrameCRUD {
     private JTable tabela;
     private DefaultTableModel modelo;
 
-    public static void main(String[] args) {
-        JFrame fPrincipal = new JFrame();
-        fPrincipal.setVisible(true);
-
-        FrameCRUDNotificacao fTeste;
-        Notificacao a = new Notificacao(0, "Descricao");
-
-        fTeste = new FrameCRUDNotificacao(a);
-        fPrincipal.add(fTeste);
-
-        fTeste.setVisible(true);
-    }
-
-    public FrameCRUDNotificacao(Notificacao notificacao) {
-        super(titulo, dimension);
-
-        this.notificacao = notificacao;
-
-        initializeComponents();
-        addComponents();
-    }
-
     public FrameCRUDNotificacao() {
         super(titulo, dimension);
 
         initializeComponents();
         addComponents();
+        carregaComboBoxUsuario();
     }
 
     public void setEndereco(Notificacao notificacao) {
@@ -147,7 +130,7 @@ public class FrameCRUDNotificacao extends FrameCRUD {
         tfCodigo = new JTextField();
         tfDataHora = new JTextField();
         tfVisualizado = new JTextField();
-        tfUsuario = new JTextField();
+        cbUsuario = new JComboBox();
 
         limparCampos();
     }
@@ -159,7 +142,6 @@ public class FrameCRUDNotificacao extends FrameCRUD {
         tfCodigo.setEditable(b);
         tfDataHora.setEditable(b);
         tfVisualizado.setEditable(b);
-        tfUsuario.setEditable(b);
     }
 
     @Override
@@ -169,7 +151,6 @@ public class FrameCRUDNotificacao extends FrameCRUD {
         tfDescricao.setText(notificacao.getDescricao());
         tfDataHora.setText("" + notificacao.getDataHora());
         tfVisualizado.setText("" + notificacao.isVisualizado());
-        tfUsuario.setText("" + notificacao.getUsuario());
 
     }
 
@@ -277,7 +258,7 @@ public class FrameCRUDNotificacao extends FrameCRUD {
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfUsuario, cons);
+        panelFormulario.add(cbUsuario, cons);
 
         /**
          * ***
@@ -296,7 +277,6 @@ public class FrameCRUDNotificacao extends FrameCRUD {
         tfDescricao.setText("");
         tfDataHora.setText("");
         tfVisualizado.setText("");
-        tfUsuario.setText("");
 
         super.repaint();
     }
@@ -341,12 +321,29 @@ public class FrameCRUDNotificacao extends FrameCRUD {
         this.tfVisualizado = tfVisualizado;
     }
 
-    public JTextField getTfUsuario() {
-        return tfUsuario;
-    }
+    private void carregaComboBoxUsuario() {
 
-    public void setTfUsuario(JTextField tfUsuario) {
-        this.tfUsuario = tfUsuario;
+        try {
+            Connection db = DriverManager.getConnection("");
+            Statement st = db.createStatement();
+            ResultSet rs = st.executeQuery("");
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setCodigo(rs.getInt("usucodigo"));
+                usuario.setNome(rs.getString("usunome"));
+                usuario.setEmail(rs.getString("usuemail"));
+                usuario.setSenha(rs.getString("ususenha"));
+
+                cbUsuario.addItem(usuario);
+            }
+            rs.close();
+            db.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocorreu erro ao carregar a Combo Box", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
 }
