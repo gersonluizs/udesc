@@ -14,6 +14,10 @@ import br.udesc.ceavi.estude.view.frame.FrameCRUDNotificacao;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDPrivilegios;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -168,4 +172,16 @@ public class ListenersCRUDPrivilegios {
             tela.limparCampos();
         }
     }
+
+    public void AttBancoEntrada(int id, int quantidade) {
+        try {
+            Connection db = DriverManager.getConnection("");
+            Statement st = db.createStatement();
+            ResultSet rs = st.executeQuery("");
+            rs.close();
+            db.close();
+        } catch (Exception e) {
+        }
+    }
 }
+
