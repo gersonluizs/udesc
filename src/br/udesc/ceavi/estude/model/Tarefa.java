@@ -42,7 +42,7 @@ public class Tarefa {
     @Column(name = "tardatahorafim")
     private String dataHoraFim;
     
-    @OneToMany (mappedBy = "tarefa")
+    @OneToMany (mappedBy = "notificacao")
     private List<Notificacao> notificacoes;
     
     @Column(name = "tartipotarefa")
