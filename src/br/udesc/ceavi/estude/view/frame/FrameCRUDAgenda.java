@@ -57,19 +57,6 @@ public class FrameCRUDAgenda extends FrameCRUD {
     private JTable tabela;
     private DefaultTableModel modelo;
 
-    public static void main(String[] args) {
-        JFrame fPrincipal = new JFrame();
-        fPrincipal.setVisible(true);
-
-        FrameCRUDAgenda fTeste;
-        Agenda a = new Agenda(0, "Descricao");
-
-        fTeste = new FrameCRUDAgenda(a);
-        fPrincipal.add(fTeste);
-
-        fTeste.setVisible(true);
-    }
-
     public FrameCRUDAgenda(String titulo, Dimension dimension) throws HeadlessException {
         super(titulo, dimension);
     }

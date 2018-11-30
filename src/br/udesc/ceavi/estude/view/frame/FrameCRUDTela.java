@@ -50,19 +50,6 @@ public class FrameCRUDTela extends FrameCRUD {
     private JTable tabela;
     private DefaultTableModel modelo;
 
-    public static void main(String[] args) {
-        JFrame fPrincipal = new JFrame();
-        fPrincipal.setVisible(true);
-
-        FrameCRUDTela fTeste;
-        Tela a = new Tela(0, "Descricao");
-
-        fTeste = new FrameCRUDTela(a);
-        fPrincipal.add(fTeste);
-
-        fTeste.setVisible(true);
-    }
-
     public FrameCRUDTela(Tela tela) {
         super(titulo, dimension);
 

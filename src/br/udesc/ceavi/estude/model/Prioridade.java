@@ -3,11 +3,10 @@ package br.udesc.ceavi.estude.model;
 /**
  * Esta classe define os atributos e comportamentos de prioridade dos conteudos
  *
- * @author Gerson, Lucas and Matheus 
+ * @author Gerson, Lucas and Matheus
  * @version 1.0
  * @since 19/08/2018
  */
-
 public enum Prioridade {
 
     ALTA("Alta"),
@@ -30,7 +29,7 @@ public enum Prioridade {
 
     @Override
     public String toString() {
-        return "Prioridade{" + "tipo1=" + tipo1 + '}';
+        return tipo1;
     }
 
 }

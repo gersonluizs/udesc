@@ -5,9 +5,7 @@
  */
 package br.udesc.ceavi.estude.view.menu;
 
-import br.udesc.ceavi.estude.model.Acao;
-import br.udesc.ceavi.estude.model.Tela;
-import br.udesc.ceavi.estude.model.Usuario;
+import br.udesc.ceavi.estude.view.frame.FrameCRUD;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDAcao;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDAgenda;
 import br.udesc.ceavi.estude.view.frame.FrameCRUDConteudo;
@@ -48,6 +46,7 @@ public class MenuPrincipal extends JMenuBar {
 
     private final FrameSistema frame;
     private ActionListener listener;
+    private Class<? extends FrameCRUD> FrameCRUDAjuda;
 
     public MenuPrincipal(FrameSistema frame) {
         super();

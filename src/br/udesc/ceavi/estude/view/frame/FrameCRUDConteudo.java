@@ -6,13 +6,21 @@
 package br.udesc.ceavi.estude.view.frame;
 
 import br.udesc.ceavi.estude.model.Conteudo;
+import br.udesc.ceavi.estude.model.Disciplina;
+import br.udesc.ceavi.estude.model.Prioridade;
+import br.udesc.ceavi.estude.model.Status;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
-import javax.swing.JFrame;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -41,9 +49,9 @@ public class FrameCRUDConteudo extends FrameCRUD {
     JTextField tfCodigo;
     JTextField tfNome;
     JTextField tfDescricao;
-    JTextField tfDisciplina;
-    JTextField tfStatus;
-    JTextField tfPrioridade;
+    private JComboBox cbDisciplina;
+    private JComboBox cbStatus;
+    private JComboBox cbPrioridade;
 
     private JPanel panelFormulario;
     private LayoutManager layoutFormulario;
@@ -58,20 +66,12 @@ public class FrameCRUDConteudo extends FrameCRUD {
 
     private Conteudo conteudo;
 
-    public FrameCRUDConteudo(Conteudo conteudo) {
-        super(titulo, dimension);
-
-        this.conteudo = conteudo;
-
-        initializeComponents();
-        addComponents();
-    }
-
     public FrameCRUDConteudo() {
         super(titulo, dimension);
 
         initializeComponents();
         addComponents();
+        carregaComboBoxDisciplina();
     }
 
     public void setEndereco(Conteudo conteudos) {
@@ -98,6 +98,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         modelo.addColumn("Cod.");
         modelo.addColumn("Nome");
         modelo.addColumn("Des.");
+        modelo.addColumn("Disc.");
         modelo.addColumn("Prio.");
         modelo.addColumn("Sta.");
         modelo.addColumn("Disc");
@@ -132,9 +133,11 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfNome = new JTextField();
         tfDescricao = new JTextField();
         tfCodigo = new JTextField();
-        tfDisciplina = new JTextField();
-        tfPrioridade = new JTextField();
-        tfStatus = new JTextField();
+        cbDisciplina = new JComboBox();
+        cbStatus = new JComboBox(Status.values());
+        cbStatus.setSelectedIndex(-1);
+        cbPrioridade = new JComboBox(Prioridade.values());
+        cbPrioridade.setSelectedIndex(-1);
 
         limparCampos();
     }
@@ -144,9 +147,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfDescricao.setEditable(b);
         tfNome.setEditable(b);
         tfCodigo.setEditable(b);
-        tfDisciplina.setEditable(b);
-        tfPrioridade.setEditable(b);
-        tfStatus.setEditable(b);
     }
 
     @Override
@@ -154,9 +154,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("" + conteudo.getCodigo());
         tfNome.setText(conteudo.getNome());
         tfDescricao.setText(conteudo.getDescricao());
-        //tfDisciplina.setText(""+conteudo.getDisciplina());
-        //tfPrioridade.setText(""+conteudo.getPrioridade());
-        tfStatus.setText(""+conteudo.getStatus());
 
     }
 
@@ -220,7 +217,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.gridy = 3;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbDisciplina, cons);
+        panelFormulario.add(lbStatus, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 1;
@@ -228,7 +225,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfDisciplina, cons);
+        panelFormulario.add(cbStatus, cons);
 
         /**
          * ***
@@ -246,7 +243,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfPrioridade, cons);
+        panelFormulario.add(cbPrioridade, cons);
 
         /**
          * ***
@@ -256,7 +253,7 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.gridy = 5;
         cons.gridwidth = 1;
         cons.fill = GridBagConstraints.HORIZONTAL;
-        panelFormulario.add(lbStatus, cons);
+        panelFormulario.add(lbDisciplina, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 1;
@@ -264,11 +261,8 @@ public class FrameCRUDConteudo extends FrameCRUD {
         cons.gridwidth = 3;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.ipadx = 100;
-        panelFormulario.add(tfStatus, cons);
+        panelFormulario.add(cbDisciplina, cons);
 
-        /**
-         * ***
-         */
         panelContainer.add(panelFormulario);
 
         /*panelContainer.add(barraRolagem);
@@ -281,9 +275,6 @@ public class FrameCRUDConteudo extends FrameCRUD {
         tfCodigo.setText("");
         tfNome.setText("");
         tfDescricao.setText("");
-        tfDisciplina.setText("");
-        tfPrioridade.setText("");
-        tfStatus.setText("");
 
         super.repaint();
     }
@@ -312,27 +303,27 @@ public class FrameCRUDConteudo extends FrameCRUD {
         this.tfDescricao = tfDescricao;
     }
 
-    public JTextField getTfDisciplina() {
-        return tfDisciplina;
-    }
+    private void carregaComboBoxDisciplina() {
+        try {
+            Connection db = DriverManager.getConnection("");
+            Statement st = db.createStatement();
+            ResultSet rs = st.executeQuery("");
+            while (rs.next()) {
+                Disciplina disciplina = new Disciplina();
+                disciplina.setCodigo(rs.getInt("id_disciplina"));
+                disciplina.setNome(rs.getString("nome"));
+                disciplina.setDescricao(rs.getString("descricao"));
+                disciplina.setCargaHoraria(rs.getString("cargaHoras"));
 
-    public void setTfDisciplina(JTextField tfDisciplina) {
-        this.tfDisciplina = this.tfDisciplina;
-    }
+                cbDisciplina.addItem(disciplina);
+            }
+            rs.close();
+            db.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocorreu erro ao carregar a Combo Box", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
 
-    public JTextField getTfPrioridade() {
-        return tfPrioridade;
-    }
-
-    public void setTfPrioridade(JTextField tfPrioridade) {
-        this.tfPrioridade = this.tfPrioridade;
-    }
-
-    public JTextField getTfStatus() {
-        return tfStatus;
-    }
-
-    public void setTfStatus(JTextField tfStatus) {
-        this.tfStatus = this.tfStatus;
     }
 }
